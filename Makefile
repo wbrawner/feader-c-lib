@@ -6,7 +6,7 @@ SOURCES=src/feader.c
 OUTPUT=-o out/feader
 
 
-all: clean setup build
+all: clean setup build run
 	
 	
 build: $(SOURCES)
@@ -17,3 +17,6 @@ clean:
 
 setup:
 	mkdir out
+
+run:
+	./out/feader
