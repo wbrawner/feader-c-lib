@@ -66,6 +66,14 @@ int main(int argc, char **argv) {
             }
         } else if (strncmp("item", channelChild->name, strlen(channelChild->name)) == 0) {
             articleCount++;
+            xmlNode* itemData = channelChild->children;
+            printf("Article info:\n");
+            do {
+                if (strncmp("text", itemData->name, strlen(itemData->name)) != 0) {
+                    printf("%s: %s\n", itemData->name, itemData->children->content);
+                }
+                itemData = itemData->next;
+            } while (itemData != NULL);
         }
         channelChild = channelChild->next;
     }
