@@ -7,6 +7,7 @@
 #include "libxml/xmlstring.h"
 #include <stdlib.h>
 #include <string.h>
+#include "sqlite3.h"
 
 int main(int argc, char **argv) {
     if (argc < 2) {
@@ -15,8 +16,13 @@ int main(int argc, char **argv) {
     } else {
         printf("Attempting to retrieve XML for URL: %s\n", argv[1]);
     }
+    
+    sqlite3 *db;
+    setup_database(db);
 
     fead_xml(argv[1]);
+
+    close_database(db);
 
     return 0;
 }
@@ -35,7 +41,7 @@ void fead_xml(char* url) {
 
     parse_xml_items(x);
 
-    save_xml_elements(x);
+    print_xml_elements(x);
 
     cleanup_xml(x);
 }
@@ -90,7 +96,7 @@ void parse_xml_items(xml *x) {
     xmlFree(xChar);
 }
 
-void save_xml_elements(xml* x) {
+void print_xml_elements(xml* x) {
     if (x->xdp == NULL || x->xdp->children == NULL) {
         printf("Unable to parse XML\n");
     }
@@ -138,4 +144,21 @@ void cleanup_xml(xml* x) {
     free(x->errBuf);
     xmlFreeDoc(x->xdp);
     free(x);
+}
+
+void setup_database(sqlite3* handle) {
+    char* init_sql = 
+#include "schema.sql"
+        ;
+    char* err;
+
+    sqlite3_open(DB_FILE, &handle);
+    sqlite3_exec(handle, init_sql, NULL, NULL, &err);
+    if (err != NULL) {
+        printf("Error setting up databases: %s\n", err);
+    }
+}
+
+void close_database(sqlite3* handle) {
+    sqlite3_close(handle);
 }

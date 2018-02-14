@@ -20,5 +20,6 @@ find_package(libcurl)
 target_link_libraries(
     Feader
     curl
+    sqlite3
     xml2
     )
