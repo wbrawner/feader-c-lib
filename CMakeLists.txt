@@ -3,13 +3,16 @@ project(Feader)
 set(CMAKE_C_FLAGS, "-g -Wall")
 include_directories(
     "/usr/local/include"
-    "/usr/include/x86_64-linux-gnu"
     "/usr/local/include/libxml2"
+    "/usr/include/x86_64-linux-gnu"
+    "/data/data/com.termux/files/usr/include"
+    "/data/data/com.termux/files/usr/include/libxml2"
     "include"
 )
 link_directories(
     "/usr/lib/x86_64-linux-gnu"
     "/usr/local/lib"
+    "/data/data/com.termux/files/usr/lib"
     "lib"
 )
 add_executable(Feader src/feader.c)
