@@ -4,11 +4,22 @@ This repo houses the library behind Feader. The idea behind the project is to se
 
 ## Configuring the Environment
 
-On Ubuntu, run the following:
+### Ubuntu
+
+Install the following packages
 
 ```
-sudo apt install cmake libcurl3-openssl-dev libxml2-dev libsqlite3-dev
+cmake libcurl3-openssl-dev libxml2-dev libsqlite3-dev
 ```
+
+OR run the configure script:
+
+```
+./configure
+```
+
+### Windows
+ WIP
 
 ## Building
 

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source /etc/os-release
+
+if [ "$ID" != "ubuntu" ]; then
+    echo "Unsupported build system. \
+    Please try on Ubuntu, or modify the script to support your system.";
+    exit 1;
+fi
+
+sudo apt install -y cmake libcurl3-openssl-dev libsqlite3-dev libxml2-dev
+
+test -d build && rm -rf build
+mkdir build
