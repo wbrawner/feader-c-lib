@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.7)
-project(Feader)
+project(
+    feader 
+    VERSION 0.1.0 
+    DESCRIPTION "The C library for Feader"
+    )
 set(CMAKE_C_FLAGS, "-g -Wall")
 include_directories(
     "/usr/local/include"
@@ -15,11 +19,26 @@ link_directories(
     "/data/data/com.termux/files/usr/lib"
     "lib"
 )
-add_executable(Feader src/feader.c)
-find_package(libcurl)
+add_executable(feader-cli src/feader.c)
+add_library(
+    feader SHARED
+    src/feader.c
+    )
 target_link_libraries(
-    Feader
+    feader-cli
     curl
     sqlite3
     xml2
+    )
+target_link_libraries(
+    feader
+    curl
+    sqlite3
+    xml2
+    )
+set_target_properties(
+    feader
+    PROPERTIES 
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 0
     )
