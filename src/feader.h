@@ -1,5 +1,5 @@
 #include "libxml/tree.h"
-#include "sqlite3.h"
+#include "sqlite/sqlite3.h"
 #define DB_FILE "feader.db"
 
 typedef struct {

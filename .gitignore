@@ -1,6 +1,8 @@
 .vs/
 .vscode/
 build/
+deps/
 out/
+tmp/
 *.sln
 *.swp

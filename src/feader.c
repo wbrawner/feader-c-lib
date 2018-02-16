@@ -7,7 +7,7 @@
 #include "libxml/xmlstring.h"
 #include <stdlib.h>
 #include <string.h>
-#include "sqlite3.h"
+#include "sqlite/sqlite3.h"
 
 int main(int argc, char **argv) {
     if (argc < 2) {
