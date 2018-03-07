@@ -9,10 +9,6 @@ typedef struct {
     char* errBuf;
 } xml;
 
-size_t my_write_callback(char *ptr, size_t size, size_t nmemb, xml *x);
-
-size_t get_xml(xml *x);
-
 void parse_xml_items(xml *x);
 
 void get_xml_ptr(xml* x, char* url);
