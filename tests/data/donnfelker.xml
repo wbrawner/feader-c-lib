@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+
+<channel>
+	<title>DONN FELKER</title>
+	
+	<link>http://www.donnfelker.com</link>
+	<description>Lessons Learned From the Software Industry</description>
+	<lastBuildDate>Tue, 06 Mar 2018 14:17:14 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.9.4</generator>
+	<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/donnfelker" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="donnfelker" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+		<title>Your First Test: The Launch Test</title>
+		<link>http://www.donnfelker.com/your-first-test-the-launch-test/</link>
+		<comments>http://www.donnfelker.com/your-first-test-the-launch-test/#respond</comments>
+		<pubDate>Tue, 06 Mar 2018 12:34:51 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[Testing]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1939</guid>
+		<description><![CDATA[I get it. Your application (mobile app or web app) doesn’t have tests and … well … you’re scared anytime you make changes. Why? … well … because you’re not sure if you broke anything when you commit that code. I encounter this a lot in the realm of software consulting. There’s one simple way [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>I get it. Your application (mobile app or web app) doesn’t have tests and … well … you’re scared anytime you make changes.</p>
+<p>Why? … well … because you’re not sure if you broke anything when you commit that code.</p>
+<p>I encounter this a lot in the realm of software consulting.</p>
+<h3>There’s one simple way to remedy fear in your development lifecycle &#8211; tests.</h3>
+<p>The more tests you have, the more confident you will be that you didn’t screw anything up.</p>
+<blockquote><p>Yeah, Ok, I get it, but what if I don’t have any tests, where do I start?</p></blockquote>
+<p>Great question.</p>
+<h2>The first test you need to write is a Launch Test.</h2>
+<p>A launch test is a functional test that runs on your continuous functional server (or even your local machine if you don&#8217;t have CI yet) that confirms that the application you just compiled/etc will actually start and you can hit the home screen/home page of the app.</p>
+<p>Simply check that your home screen text is showing as you would expect it to show and that certain key values are present. Simple. Done.</p>
+<blockquote><p>Hold up … but I know I didn’t break my home page. Why should I test it? Why is this important?</p></blockquote>
+<p>You said you didn’t have any tests. Are you sure you&#8217;re sure you didn’t break it?</p>
+<p>Thought so, probably not.</p>
+<p>The reason why this is important is that you may have made a change to the dependency injection code that uses reflection that does something at runtime that would only be exposed when the app is run.</p>
+<p>What would happen if you didn’t catch that in development?</p>
+<p><img src="https://s.w.org/images/core/emoji/2.4/72x72/1f4a5.png" alt="💥" class="wp-smiley" style="height: 1em; max-height: 1em;" />BOOM! CRASH! <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f4a5.png" alt="💥" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Exactly.</p>
+<p>Furthermore what this first functional test does is give you a starting point. It gives you a jump off point. It&#8217;s your first test of many.</p>
+<p>Yes, it might hit production servers. Ok, when you test manually you probably were hitting production servers too. Yikes. It is what it is.</p>
+<p>The key thing to remember here is that you now have a test covering you to ensure your app launches.</p>
+<h3>What to Test Next</h3>
+<p>Ultimately the next thing you should be testing is your most used screens:</p>
+<ul>
+<li>Home/Main Screen</li>
+<li>Customers</li>
+<li>Orders</li>
+<li>Etc</li>
+</ul>
+<p>Once you get some tests around these screens (do they load, do they work when interacted with) then you can refactor.</p>
+<h2>Refactor with Confidence</h2>
+<p>That&#8217;s the key takeaway here. Tests give you the confidence to do work that otherwise might be overly stressful and risky because you’re not sure what you’re breaking.</p>
+<p>Functional (and integration) tests are the best place to start because they’re true end-to-end tests and they mimic what the end user is going to see and this is important because …</p>
+<p><b>Nothing else matters more than the end user experience.</b></p>
+<p>If the end user sees a screen that&#8217;s broken, gets a crash, or sees incorrect data they’re not going to be happy and they won’t give two cents that your app is powered by AI with advanced machine learning to render results from a globally decentralized blockchain network running on Ethereum.</p>
+<p>User’s don’t care about your cool tech stack if your app doesn’t work.</p>
+<p><i>To the user, if the app doesn’t work, it&#8217;s garbage.</i></p>
+<p>… and …. well … at that point, let the 1-star reviews come flooding in.</p>
+<p>So … if you don’t have any tests, start with some functional tests and then you can refactor with confidence and then and only then should you introduce more testing mythologies into your app.</p>
+<p>&nbsp;</p>
+<p><small>PS: If your app is an Android app, quickly set up an Espresso launch test with the Espresso Test Recorder. Sam Edwards has a great course on it <a href="https://caster.io/courses/espresso-test-recorder">here</a>.</small></p>
+<p>&nbsp;</p>
+<p><a style="background-color: black; color: white; text-decoration: none; padding: 4px 6px; font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: bold; line-height: 1.2; display: inline-block; border-radius: 3px;" title="Download free do whatever you want high-resolution photos from Ehud Neuhaus" href="https://unsplash.com/@paramir?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer"><span style="display: inline-block; padding: 2px 3px;">Photo: Ehud Neuhaus</span></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/your-first-test-the-launch-test/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>I Don’t Have Time is a Myth</title>
+		<link>http://www.donnfelker.com/i-dont-have-time-is-a-myth/</link>
+		<comments>http://www.donnfelker.com/i-dont-have-time-is-a-myth/#comments</comments>
+		<pubDate>Mon, 06 Nov 2017 15:03:15 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Health]]></category>
+		<category><![CDATA[Misc]]></category>
+		<category><![CDATA[Goals]]></category>
+		<category><![CDATA[Life]]></category>
+		<category><![CDATA[Productivity]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1936</guid>
+		<description><![CDATA[“I don’t have time” is a myth. The statement, “I don’t have time”, really gets under my skin. Why? Because you do have the time. Get up early. Cant? Go to bed earlier. Stop watching TV shows and YouTube channels that do nothing to help you progress in your dreams. Stop playing video games. Stop [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="alignnone wp-image-1937" src="http://www.donnfelker.com/wp-content/uploads/2017/11/idonthavetime-loic-djim-300x234.jpg" alt="I Don't Have Time" width="641" height="500" srcset="http://www.donnfelker.com/wp-content/uploads/2017/11/idonthavetime-loic-djim-300x234.jpg 300w, http://www.donnfelker.com/wp-content/uploads/2017/11/idonthavetime-loic-djim-768x599.jpg 768w, http://www.donnfelker.com/wp-content/uploads/2017/11/idonthavetime-loic-djim-1024x798.jpg 1024w" sizes="(max-width: 641px) 100vw, 641px" /></p>
+<p>“I don’t have time” is a myth.</p>
+<p>The statement, “I don’t have time”, <em>really gets under my skin.</em></p>
+<p>Why? Because <em>you do have the time</em>.</p>
+<p>Get up early. Cant? Go to bed earlier.</p>
+<p>Stop watching TV shows and YouTube channels that do nothing to help you progress in your dreams.</p>
+<p>Stop playing video games.</p>
+<p>Stop going out to the bar.</p>
+<p>Stop wasting time reading news websites, Reddit, surfing Facebook or Instagram for hours.</p>
+<p>You have the time. Its right there in your hands. <em>Use it</em>.</p>
+<p>How much time would you get back if you stopped doing all of those things above? You’d be blown away by how much time you’d get back. In fact, let us dig in a little bit deeper …</p>
+<h2>Watching 45 Days of TV Per Year <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f44e.png" alt="👎" class="wp-smiley" style="height: 1em; max-height: 1em;" /></h2>
+<p>The average American spends 3 hours a day watching TV.</p>
+<p><b>3 HOURS A DAY!</b></p>
+<p>Some reports show an <a href="https://www.nytimes.com/2016/07/01/business/media/nielsen-survey-media-viewing.html">upwards of five hours a day</a>.</p>
+<p>Let us be conservative and stick with 3 hours.</p>
+<p>That&#8217;s 21 hours a week!</p>
+<p>90 hours in a month!</p>
+<p>1,095 hours in a year.!</p>
+<p><em>That’s over 45 days of watching TV for 24 hours straight!</em></p>
+<p>This is just watching TV. This does not include time spent looking at your phone!</p>
+<p><b>That’s just insane.</b></p>
+<p>“I don’t have time.”</p>
+<p>&nbsp;</p>
+<p><i>Pffft. Whatever.</i></p>
+<p>&nbsp;</p>
+<p>No, you do have the time &#8211; you’re just choosing not use it for the things you say “You don’t have the time for.”</p>
+<h2>The magic of time optimization</h2>
+<p>Is life hard sometimes? Yes, it is. Oh god yes. It can feel completely overwhelming and you might feel like you can’t get a breath. But … you still have time … if you don’t waste it.</p>
+<p>Single mothers and fathers exist and they make magical things happen. They work multiple jobs, have little or no help from family and they have to do everything themselves. Somehow, they make magic happen.</p>
+<p>You know what? I bet you most of these folks have “more time” than most.</p>
+<p><i>Why? How?</i></p>
+<p>They optimize their life to maximize their time.</p>
+<p>Furthermore, I bet you they read more books than most too.</p>
+<p>Imagine being one who catches the bus at 6:30 am after dropping the kids off at early-drop off and/<i>or daycare/</i>preschool. <strong>So what do they do with that next 10–30 minutes of commuting time (before and after work)?</strong> They probably use that next 10-30 minutes to listen to a book or podcast or watch a video tutorial that they downloaded on their phone instead of passively looking out the window or on Facebook<i>Instagram</i>Reddit<i>News</i>etc.</p>
+<p>They have the time &amp; you have this same time.</p>
+<p>Maybe you don’t commute via train, maybe you drive to work.</p>
+<p>Same thing.</p>
+<p>Use that time to learn, grow, etc. Maybe you work at home? That&#8217;s cool. Listen to books/<i>podcasts while driving/</i>walking to the grocery store or dentist/or wherever you’re driving.</p>
+<p>For example, let&#8217;s think about the time in the shower. Could that be put to use? Hell yes, it can. Put an audio book on while you’re in the shower. <em>That&#8217;s 10-15 minutes a day. 10-15 minutes a day for 30 days is 5 to 7.5 hours.</em> You can easily listen to a book a month simply by listening to it in the shower. Use the Audible app to download books and listen to them on the go.</p>
+<p>“I don’t have the time.” Yeah. Ok.</p>
+<h2>“… but I don’t have time to eat healthy and work out”</h2>
+<p>Maybe you want to work out and get yourself into better health and don’t have time for the gym. I get it. Do a bodyweight program by any number of fitness trainers 3-5 days a week at home. There a TON of them online for free. Eat salads for lunch. The best shape I got into in my life I worked out two days a week and ate healthy (salads and steamed veggies). The diet did more for me than working out did.</p>
+<p>Maybe you don’t have a ton of time for meal prep. Ok, I get it. Then follow <a href="http://bradpilon.com/introduction-to-intermittent-fasting/" target="_blank" rel="noopener">intermittent fasting</a> &#8211; it helps you learn how to control your hunger and is proven to be very good for your health. Fewer meals to prepare &#8211; eating less and improving health? Yes. I’m in. Eat steamed veggies from the microwave for two meals a day with lean grilled meats. Do a meal prep day on Sunday. There are always options.</p>
+<p>I once knew a girl in college who would cook beans and rice every Sunday and have that for lunch because she didn’t have time to make lunch every day and bring it to college. She did the work on Sundays. She found the time, owned the problem and fixed it &#8211; even on the cheap.</p>
+<h2>Finding Time is Easy</h2>
+<p>Finding time is easy if you look hard enough. It&#8217;s everywhere. 10 minutes here, 15 minutes there. Before you know it you have an hour or two each day you can use.</p>
+<p>If you feel like you don’t have time try to find all the spaces where you’re not doing anything (dentist office waiting, doctors office waiting, at a kids drama practice, waiting) and then use that time to push the ball a little further down the field. I bring my laptop everywhere, just in case I have a free moment to crank things out. In fact, I’m writing this post at my accountant&#8217;s office this AM while he’s preparing some documents for me.</p>
+<p>I’m not saying to give up that time you spend with your family. That has importance too. Maybe one of your goals is to be a great parent and/or spouse. Then execute on it and find the time to be a great parent. Use the spare time for that. Same for anything else that you find that you want to accomplish. It doesn’t have to be “work” or “business”. If you “don’t have time to walk the dog”, then stop surfing Facebook or Instagram while you’re on the toilet (you know you do it too).</p>
+<p>The moral of the story is &#8211; you do have the time, it&#8217;s most likely being wasted on needless activities that provide no real growth value to you.</p>
+<h2>Tips</h2>
+<p>One thing I advise is to try to get up earlier &#8211; <a href="http://www.businessinsider.com/navy-seals-why-waking-up-early-matters-2016-9" target="_blank" rel="noopener">before anyone else</a>. I&#8217;ll admit, it&#8217;s not easy. One thing I do the night before is write down a couple of things I want to get done before everyone else gets up (could be work out/run, get task x done, read, work on your project, etc). You get such a head start on the day that you feel positive and happy.</p>
+<p>Can you do the same at night? Yes, for sure. Maybe you’re a night owl and get most your work/etc stuff done from 9pm-3am. That’s fine too. However, I will say this &#8211; when you’re tired, it&#8217;s much easier to simply go to bed and miss out on those hours. When you get a head start at the beginning of the day you start off on the right foot. Waiting to get some stuff done at the end of the day can sometimes fall apart (bad day, super tired, made a bad decision by having few too many at happy hour, etc).</p>
+<p>Next, focus on whatever you want to accomplish and execute until it’s done. Don’t lose focus. Do not get distracted. Kill all external distractions. Complete the task at all costs. Striking an item off a to-do list (even if it is mental) is a huge win. Build upon these wins and snowball them.<br />
+Be obsessed with your passions and goals. Its ok to be that way. Do you want to be the best parent in the world? Go do it. Don’t let anything stop you. Do you want to be the best long-distance marathon runner? Go do it. Do you want to be the best rheumatologist in the United States? GO. DO. IT.</p>
+<p>No one is going to give you anything. You have to get it yourself. You have to take the risks. You have to make it happen. To do those things you’ll need to find the time and trust me, you have it.</p>
+<p>&nbsp;</p>
+<p>Make it happen.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><small>Photo credit: <a href="https://unsplash.com/@loic" target="_blank" rel="noopener">@loic</a></small></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/i-dont-have-time-is-a-myth/feed/</wfw:commentRss>
+		<slash:comments>18</slash:comments>
+		</item>
+		<item>
+		<title>Android MVVM with DataBinding – Removing Logic from Your Views with BindingAdapters</title>
+		<link>http://www.donnfelker.com/android-mvvm-with-databinding-removing-logic-from-your-views-with-bindingadapters/</link>
+		<comments>http://www.donnfelker.com/android-mvvm-with-databinding-removing-logic-from-your-views-with-bindingadapters/#comments</comments>
+		<pubDate>Fri, 20 Oct 2017 14:10:41 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+		<category><![CDATA[Android]]></category>
+		<category><![CDATA[Kotlin]]></category>
+		<category><![CDATA[MVVM]]></category>
+		<category><![CDATA[Testing]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1934</guid>
+		<description><![CDATA[One of the things that&#8217;s great about MVVM (I’m using data binding in my implementation) is the lack of the boilerplate that you have to deal with. When working with the MVP pattern you are forced to deal with an obscene amount of get/set boilerplate code. Sure, this does make your UI logic more testable [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>One of the things that&#8217;s great about MVVM (I’m using data binding in my implementation) is the lack of the boilerplate that you have to deal with. When working with the MVP pattern you are forced to deal with an obscene amount of get/set boilerplate code. Sure, this does make your UI logic more testable but it doesn’t get around the fact that there is a lot of boilerplate.</p>
+<p>While MVVM with Data Binding does remove a good deal of this boilerplate you also run into new issues where logic is now present in the views, like this:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;TextView 
+    ...
+    android:visibility="@{post.hasComments ? View.Visible : View.Gone}" /&gt;</pre>
+<p>As <a href="https://twitter.com/hitherejoe">Joe Birch</a> accurately pointed out in <a href="https://labs.ribot.co.uk/approaching-android-with-mvvm-8ceec02d5442">his article</a> &#8211;  this has a code smell and it just feels gross.</p>
+<p>The logic is now buried in an Android XML view and its near impossible to test unless you&#8217;re rigorous about your Espresso tests … and let’s be brutally honest here… <strong>you’re not rigorous about your testing</strong>.</p>
+<h2>Removing Logic from XML Views with Custom Binding Adapters</h2>
+<p>Removing logic from XML Views is quite easy with custom BindingAdapters. Early adopter and DataBinding aficionado, <a href="https://twitter.com/lisawrayz">Lisa Wray</a>, <a href="https://plus.google.com/+LisaWrayZeitouni/posts/5DQGiNbne5W">posted about this</a> back in 2015: Pro tip: More data binding — Easy view visibility in XML! I heard you guys l….</p>
+<p>In short, you create a binding adapter in Java (or Kotlin as I’ve done below) and drop it into your project.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">@BindingAdapter(“isVisible”)
+fun setIsVisible(view: View, isVisible: Boolean) {
+  if (isVislble) {
+    view.visibility = View.VISIBLE
+  } else {
+    view.visibility = View.GONE
+  }
+}</pre>
+<p>The logic for showing a view is now determined by a Boolean value. To use this in an MVVM Data Binding XML View you’d do the following in your view:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;TextView 
+    ...
+    app:isVisible="@{post.hasComments()}" /&gt;</pre>
+<p>The logic for the hasComments code is now kept inside of the View Model which can be easily unit tested.</p>
+<h2>Testing the Custom BindingAdapter</h2>
+<p>We may have removed the logic from the XML view, but we still have code that needs to get tested. Now that the view logic is based upon a Boolean we can easily test this with an Espresso test:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">@Test
+fun isVisibleShouldBeEasilyControlledWithABoolean() {
+  val v = View(InstrumentationRegistry.getTargetContext())
+  setIsVisible(v, true) // visible
+  assertThat(v.visibility).isEqualTo(View.VISIBLE)
+
+  setIsVisible(v, false) // gone
+  assertThat(v.visibility).isEqualTo(View.GONE)
+}</pre>
+<p>You’re going to put this in your androidTest folder.</p>
+<p>I know what you’re thinking &#8211; this is an Espresso Test, it runs slow. Not really. You’d be surprised at how fast this test runs as it does not need to fire up an activity and start clicking on buttons/etc.</p>
+<p>You now have logic that can (and is) tested via a simple test. Your display logic is then kept inside of your View Model (does a post have comments or not, that&#8217;s a fairly simple true/false boolean).</p>
+<p>Furthermore … your ViewModel is not riddled with Android package references (which can make it harder to test). Which brings me to …</p>
+<h2>Keep the ViewModel free of Android Dependencies</h2>
+<p>One goal that I have is to keep the View Model free from Android Dependencies if at all possible. This allows me to utilize JUnit unit tests for a quick feedback loop. I can write, test and iterate much faster with a unit test than I can with an Espresso based test.</p>
+<p>Yes, you could put some of this logic into the View Models, but I find keeping it as clean a possible provides for the best possible outcome when it comes to testing.</p>
+<p>As with everything, there are always caveats to this &#8211; using resource identifiers (as they&#8217;re only integers, etc). My rule of thumb is to try to avoid the Android packages in my view models. That way it makes testing a snap.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/android-mvvm-with-databinding-removing-logic-from-your-views-with-bindingadapters/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Make the Most of Your Time</title>
+		<link>http://www.donnfelker.com/make-the-most-of-your-time/</link>
+		<comments>http://www.donnfelker.com/make-the-most-of-your-time/#comments</comments>
+		<pubDate>Thu, 14 Sep 2017 18:04:00 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Health]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1931</guid>
+		<description><![CDATA[Photo: Uroš Jovičić Recently, a  friend of mine asked if I wanted to partake in a small side project with him. Unfortunately, I didn&#8217;t have the time to commit to the project so I politely declined. He responded with: Dude I totally understand. I&#8217;m single at the moment and pretty much have my ass alone [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="alignnone wp-image-1932" src="http://www.donnfelker.com/wp-content/uploads/2017/09/sands-of-time-1024x768.jpg" alt="Make the Most of Your Time" width="681" height="423" /><br />
+<a style="background-color: black; color: white; text-decoration: none; padding: 4px 6px; font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: bold; line-height: 1.2; display: inline-block; border-radius: 3px;" title="Download free do whatever you want high-resolution photos from Uroš Jovičić" href="https://unsplash.com/@urosjovicic96?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer"><span style="display: inline-block; padding: 2px 3px;">Photo: Uroš Jovičić</span></a></p>
+<p>Recently, a  friend of mine asked if I wanted to partake in a small side project with him. Unfortunately, I didn&#8217;t have the time to commit to the project so I politely declined.</p>
+<p>He responded with:</p>
+<blockquote><p>Dude I totally understand. I&#8217;m single at the moment and pretty much have my ass alone to take care of and I can barely remain afloat. You are a rockstar. I don&#8217;t know how the hell you can do it.</p></blockquote>
+<p>What he&#8217;s saying is that he has no idea how I get so much stuff done with my situation (Married, 2 kids, consulting, founding a company, a podcast, presenting, writing, 3 dogs, 3 cats, etc etc etc).</p>
+<p>So how do I get so much stuff done?</p>
+<p><em>Time optimization, 100%.</em></p>
+<p>Don&#8217;t get me wrong &#8230; I&#8217;m not some zen-productivity-master, not at all. I just value my time.</p>
+<p>The way I see it is like this:</p>
+<p>Time<strong> <em>is your life.</em></strong></p>
+<h3>Life is Finite</h3>
+<p>One time I did an exercise that scared me: I took a look at the average life span of a US Male (~78 years) and I calculated the days I had left in my life.</p>
+<p><em>Hint: It’s not that much. <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f62f.png" alt="😯" class="wp-smiley" style="height: 1em; max-height: 1em;" /></em></p>
+<p>After seeing that number it catapulted me into action. To check yours go here: <a href="http://www.countmydays.com/" target="_blank" rel="noopener">http://www.countmydays.com/</a></p>
+<p>I’m not being morbid about life, it&#8217;s merely factual.</p>
+<p>&nbsp;</p>
+<h3>Seeing the Number of Days Left in Your Life is Scary</h3>
+<p>My friend replied back with a shocked face:</p>
+<blockquote><p>I calculated the waking hours I had left in my life.</p>
+<p>Holy cow, this freaks me out &#8230; <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f62e.png" alt="😮" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p></blockquote>
+<p>I know the feeling. Every time I look at the number, it&#8217;s smaller. <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f4c9.png" alt="📉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> It never goes up. <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f622.png" alt="😢" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Not many people look into how many days are left in their life. They should though &#8211; as it&#8217;s a humbling exercise. I think it&#8217;s important as it helps keep yourself grounded and keep your ambitions high because, well, your time is limited. You have less of it than you think.</p>
+<p>There&#8217;s a popular blog post titled <a href="https://waitbutwhy.com/2015/12/the-tail-end.html"><em>The Tail End</em></a> in which the author draws little pictures of how many months, weeks and days he has left. He goes on further to outline how much time we have left with loved ones, time left doing things you love, face time with children, etc. Read it, it&#8217;s worth your time (pun intended).</p>
+<p>You probably never thought about this, but around 90% of the time that you will have spent with your parents was done from the ages of 0-18. So if you have kids &#8211; remember this. My daughter just turned 9 and I realized that I&#8217;m already 45% through the average time that I will spend with her in our combined lives. That really sucks, but it also puts urgency into what matters &#8211; being with my children as much as possible and not taking it for granted.</p>
+<h3><em>So &#8230; Why am I harping on this so much? </em></h3>
+<p>I&#8217;m doing so because your time here is finite. You only have so many at bats and then the game is over. That&#8217;s it. All done. Why not give it all you have, all the time? Why not chase those ambitions and dreams? Fix those broken relationships? Say sorry instead of being stubborn. You get what I&#8217;m saying.</p>
+<p>The value of my time is a primary driver in my decision to work remotely. I know I only have so long with my kids, my wife, my family. Why waste that valuable resource commuting to and from work just to sit at a desk? To me, that&#8217;s absolutely insane.</p>
+<p>Unfortunately, even though this information is quite eye opening, sometimes people will still avoid doing what they want to do <strong>due to fear</strong>.</p>
+<p>Fear of failure.</p>
+<p>Fear of rejection.</p>
+<p>Fear of success (yes, it&#8217;s <a href="http://99u.com/articles/14347/are-you-subconsciously-afraid-of-success" target="_blank" rel="noopener">really a thing</a>).</p>
+<h3>Break Down Your Fears and Do It</h3>
+<p>One of my favorite things to use to combat fear is to utilize a technique known as &#8220;<em>Fear Setting</em>&#8220;. I picked this up from Tim Ferriss, and you can watch a video on it here &#8211; <a href="https://www.ted.com/talks/tim_ferriss_why_you_should_define_your_fears_instead_of_your_goals">Fear Setting by Tim Ferriss (Ted Talk)</a>. It helps you determine what you&#8217;re scared of and helps you realize it&#8217;s usually not that big of a deal. The video is very important, so please take a few minutes and watch it. Queue it up while you eat your lunch, etc. One of the quotes he uses in the talk is this one &#8211;</p>
+<blockquote><p>We suffer more often in imagination than in reality. &#8211; Seneca</p></blockquote>
+<p>This is so true. Using quotes like this and a mix of Stoicism to remind you of important things in life makes it easy to appreciate what you have, and how much time you have left and what you can do to maximize it.</p>
+<p>Lastly, Steve Jobs has a quote that I often refer to:</p>
+<blockquote><p>Remembering that I’ll be dead soon is the most important tool I’ve ever encountered to help me make the big choices in life. Because almost everything — all external expectations, all pride, all fear of embarrassment or failure — these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart. &#8211; <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc">Steve Jobs, Stanford 2005 Commencement Speech</a></p></blockquote>
+<p>I&#8217;m not a huge Steve Jobs fan, but this speech really helped ground me. I have a recurring calendar event every 3 months to watch <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc" target="_blank" rel="noopener">this speech</a>. It always helps course correct me when I&#8217;m wandering in the sea of life.</p>
+<p>Yeah, I know &#8230; you&#8217;ve heard that life is short, but seeing it in numbers is humbling and action inspiring, no doubt.</p>
+<p>So, how do I get so much done?</p>
+<p>I remind myself that<em> life is finite.</em></p>
+<p>&nbsp;</p>
+<hr />
+<p><em>I&#8217;d like to thank <a href="http://kaush.co" target="_blank" rel="noopener">Kaushik Gopal</a> for reviewing this article.</em></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/make-the-most-of-your-time/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>TDD Your UI Layer – #uitestsmatter</title>
+		<link>http://www.donnfelker.com/tdd-your-ui-layer/</link>
+		<comments>http://www.donnfelker.com/tdd-your-ui-layer/#comments</comments>
+		<pubDate>Tue, 24 Jan 2017 19:43:48 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1917</guid>
+		<description><![CDATA[A recent conversation developed on twitter when I posted a link to a Caster.IO lesson where I talk about using TDD to drive your UI development. The problem? Some folks feel that you cannot TDD your UI layer with a functional testing framework like Espresso. I disagree. Why? Well, before I dive into details, I [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p dir="auto"><img class="alignnone size-full wp-image-1921" src="http://www.donnfelker.com/wp-content/uploads/2017/01/tdd-your-ui-layer.jpg" alt="TDD Your UI Layer" width="960" height="540" srcset="http://www.donnfelker.com/wp-content/uploads/2017/01/tdd-your-ui-layer.jpg 960w, http://www.donnfelker.com/wp-content/uploads/2017/01/tdd-your-ui-layer-300x169.jpg 300w, http://www.donnfelker.com/wp-content/uploads/2017/01/tdd-your-ui-layer-768x432.jpg 768w" sizes="(max-width: 960px) 100vw, 960px" /></p>
+<p dir="auto">A recent conversation developed on twitter when I posted a link to a <a href="https://caster.io" target="_blank">Caster.IO</a> lesson where I talk about using TDD to drive your UI development.</p>
+<p dir="auto">The problem?</p>
+<p dir="auto"><em>Some folks feel that you cannot TDD your UI layer with a functional testing framework like Espresso.<br />
+</em><br />
+<strong>I disagree. </strong></p>
+<p dir="auto">Why? Well, before I dive into details, I thinks it&#8217;s only pertinent to re-establish what TDD is.</p>
+<h3>What is TDD?</h3>
+<p dir="auto">TDD by definition is: Test Driven Development. TDD is a <em>software development process.<br />
+</em><br />
+<strong>Key word: <em>process.</em></strong></p>
+<p dir="auto">The process of TDD is comprised of 5 steps:</p>
+<ol>
+<li><strong>Add a test &#8211; </strong>each new feature, update, fix, etc starts with writing a test to cover that new code/change/etc.</li>
+<li><strong>Run all tests</strong> and see if the new tests fails (typically to save time, I&#8217;ll run the new test in isolation to speed things up, then loop back later to run all of them to check for regressions).</li>
+<li><strong>Write the code</strong> (this is what you orignally needed/wanted to do anyway &#8211; implement a feature/etc).</li>
+<li><strong>Run the test(s)</strong> &#8211; Again, typically I&#8217;ll run my single new test in isolate to speed up this process a bit. If it passes, I run all the tests to see if I broke anything.</li>
+<li><strong>Refactor</strong> &#8211; After all tests are passing, you now have a safety net to catch you in case you make a mistake. At this time you can now start refactoring to change the desired implementation of the code.</li>
+</ol>
+<p>&nbsp;</p>
+<p dir="ltr">Then &#8230; <strong>repeat the steps for each new feature/update/fix/etc</strong>. You may need to do this many times over. One test for the &#8220;happy path&#8221; (when everything works as you hope/expect it would), one for all the edge cases, one for null value paths, one for catastrophic failures, etc etc. You usually end up with may tests covering all the different expected (and unexpected outcomes) for that given code path.</p>
+<h3>So, how do you TDD your UI Layer?</h3>
+<p dir="ltr">Let us keep the full TDD process in mind when walking through this example &#8230;</p>
+<p dir="ltr">This means writing your test first, even before particular UI elements exist. In this case I&#8217;ll do it with <a title="Espresso Docs" href="https://google.github.io/android-testing-support-library/docs/espresso/" target="_blank">Espresso</a>, the defacto Android UI testing framework along with <a href="http://junit.org/junit4/" target="_blank">jUnit</a> as the driver.</p>
+<p dir="ltr"><strong>Step 1: Create the Test</strong></p>
+<p dir="ltr">I&#8217;ll create a test like so:</p>
+<p><img class="aligncenter" src="http://www.donnfelker.com/wp-content/uploads/2017/01/HomeTests_java_-_skyfit-android_-____Documents_Agilevent_clients_Skyfit_source_Android_skyfit-android_.png" width="1262" height="200" align="middle" /></p>
+<p dir="ltr">As you can see, the <em>buttonx</em> id does not exist yet (this is why it is red). At this point I&#8217;d go implement the button and we&#8217;d then see something like this:</p>
+<p><img class="aligncenter" src="http://www.donnfelker.com/wp-content/uploads/2017/01/ExampleInstrumentedTest_java_-_UIUnitTestExample_-____scratch_UIUnitTestExample_.png" width="1204" height="172" align="middle" /></p>
+<p dir="ltr">The id, <em>buttonx</em>, is now found (it changed colors and we can navigate to its definition now). How I implemented it is not important as it&#8217;s an implementation detail and we&#8217;re worried about the TDD process here. I can compile successfully. Ok, now I can move onto step 2 of the TDD process:</p>
+<p dir="ltr"><strong>Step 2: Run The Test<br />
+</strong>I run the test and I expect it to fail because the text &#8220;Hello from buttonx&#8221; does not exist. If it does not fail (meaning that it passes) I have a problem and I need to dig into that. Let&#8217;s assume it fails and at that point I&#8217;m ready for Step 3 &#8230;</p>
+<p dir="ltr"><strong>Step 3: Write The Code<br />
+</strong>At this point I&#8217;m able to write the code that is needed in order to get this code to pass (whatever that may be &#8211; adding a click listener to buttonx and having it output &#8220;Hello from buttonx&#8221; somewhere on the screen). Then move onto step 4 &#8230;</p>
+<p dir="ltr"><strong>Step 4: Run the test(s)<br />
+</strong>We run the test(s) to make sure that the tests passes and to make sure that other tests still pass. This is integral to the TDD process. You will want to run all the tests (usually at least all the tests that interact with this component/screen/etc) to catch any regressions that may popup because of this new code you have added. After everything is green (passing) I&#8217;ll move onto Step 5 &#8230;</p>
+<p dir="ltr"><strong>Step 5: Refactor<br />
+</strong>This is where I&#8217;d come in and clean up the code to make it more proper. Maybe make things more private, final, or extract methods, etc. Maybe I find an area of code that I can improve the design on/etc. If thats the case; for example maybe I&#8217;ve refactored some logic into a new class I&#8217;d introduce a new TDD test process for a new refactoring/etc. When would that happen or why? Maybe I see that I&#8217;ve duplicated code in a few places and I can extract this into another class. At that point I&#8217;d probably want some tests around that class so I&#8217;d go through the TDD process with that class.</p>
+<p dir="ltr">I&#8217;ve followed TDD to implement a feature/change a chunk of code/fix a bug/etc that <strong>is on the UI using Espresso</strong>.</p>
+<p dir="ltr"><em>Most importantly &#8211; I used TDD a process to implment it.</em></p>
+<p>&nbsp;</p>
+<h3>Arugments Against TDD in this Context</h3>
+<p dir="ltr">Sure, this example is fairly contrived and it&#8217;s super simple, and it&#8217;s that way for a reason &#8211; I&#8217;m trying to demonstrate a point. <em><strong>TDD is a software development process</strong></em>. Alas, there are some folks who feel that TDD represents something different. Let&#8217;s chat about those opositional points of view.</p>
+<h4>TDD should not use a UI Testing Framework</h4>
+<p dir="ltr">I completely disagree with this because <strong><em>TDD is a software development process</em></strong>. The UI is part of the software and if you want to develop it using TDD then you can. Step 1 states that we need to write a test. Does it matter what framework we use to write it in? No. IMO, any test is better than no test (but thats another topic for another day). Looking at the <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank">Wikipedia entry for TDD</a> I found the following under the definition of Part 1 &#8211; Add a test:</p>
+<blockquote><p>The developer [&#8230;] can write the test in whatever testing framework is appropriate to the software environment.</p></blockquote>
+<p dir="ltr">We&#8217;re writing the UI, therefore Espresso is an appropriate testeing framework to use as it is a UI testing framework. Right tool. Right job.</p>
+<p dir="ltr">The reason most folks oppose following TDD with UI testing is because it&#8217;s slow, which brings me to the next item &#8230;</p>
+<h4>When doing TDD, all tests should be fast</h4>
+<p dir="ltr">I totally can relate to this one. I&#8217;ve been part of teams that have HUGE Espresso/UI test suites and they can take hours upon hours to complete. Running the full test suite can be a pain and it&#8217;s simply not feasible. In this case <a href="https://caster.io/lessons/episode-2-android-continuous-integration-with-circleci/" target="_blank">I rely on CI</a> to run full test suite. During development though, for steps 2 and 4 (where we run the tests) I&#8217;ll run a small subset of tests. Usually the test(s) that I&#8217;m writing or the small suite of tests in that test file/package that is pertinent. This allows me to remain nimble. Typically this is anywhere from one to twenty tests (give or take).</p>
+<p dir="ltr">I agree, this is slow compared to JVM unit tests that can run at hundreds (if not thousands) per second. However, I&#8217;m doing UI development here so given the state that UI testing is in (for Android) we&#8217;re unfortunately stuck with some slower tests. It is what it is, but the TDD process can still be used.</p>
+<h4>Doing TDD on the UI is an Anti-Pattern</h4>
+<p dir="ltr">I&#8217;ve seen this mentioned a few times, and it&#8217;s mainly because <em>having slow running tests is an anti-pattern</em> &#8230; but as I stated above, that&#8217;s the situation were in. How do you get around that though? Extract your logic out into something like the <a href="https://caster.io/courses/mvp/" target="_blank">MVP pattern</a>. You can then test the majority of your code in fast jvm tests. You&#8217;ll still need a thin layer of UI tests to make sure your UI works as you (and your customers) expect it to.</p>
+<p dir="ltr">I say this because <strong><em>you need to verify what your customer is going to see</em></strong> &#8230; because &#8230;</p>
+<p dir="ltr">If your apps UI fails/crashes/doesnt do what it is supposed and it does not do what the customer wants, they&#8217;ll think its garbage.<em> It doesnt matter if your app is beautifully architected with fancy patterns and so forth. If the UI doesnt work and do its job as expected, the customer is unhappy and will most likely not use your app.</em> At that point all your work is moot.</p>
+<p dir="ltr">How many times have you used an app and initially it looked great, but then when you started using it &#8230; well &#8230; it just felt like things were wrong. What was your reaction then? Most likely a negative one. You probably didnt use the app or even uninstalled it right away. I definitely don&#8217;t want that and I&#8217;m sure you don&#8217;t either. #uitestsmatter</p>
+<p dir="ltr">What I&#8217;m trying to say is, UI tests are extremely useful, even if its a thin layer and that layer can be test driven thorugh TDD.</p>
+<h4>&#8230; but, I heard TDD is Dead</h4>
+<p dir="ltr">This has been going around for the last few years. I&#8217;ve been through the TDD inception/rediscovery in 2003 by <a href="https://twitter.com/KentBeck" target="_blank">Kent Beck</a> and seen it rise and fall and rise again and so forth. It&#8217;s cyclical. One moment it&#8217;s in favor, the next its not. <em>The hard part is</em> &#8230; <strong>TDD is hard</strong>. With some languages TDD is seen as a way to help improve the overall design of the app (which is usually the case with statically typed languages like Java). Dynamic languages have some other benefits when it comes to testing and mocking that statics do not (but they have their own downfalls too, which I wont get into here).</p>
+<p dir="ltr">Back in 2014, <a href="https://martinfowler.com/" target="_blank">Martin Fowler</a>, <a href="https://twitter.com/KentBeck" target="_blank">Kent Beck</a> and <a href="https://twitter.com/dhh" target="_blank">DHH</a> hosted a series of online videos where they discussed if TDD was dead or not. You can find them here &#8211; <a href="https://martinfowler.com/articles/is-tdd-dead/" target="_blank">Is TDD Dead?</a> I&#8217;ll let you decide if TDD is dead. Each person in the group had great points and at times I agreed separately with each one of them on different topics.</p>
+<p dir="ltr">I&#8217;m not here to argue if TDD is dead. I&#8217;ll leave that up to you to determine.</p>
+<p dir="ltr">However, I do hope that this article does prove the point that TDD can be possible with UI development.</p>
+<p>&nbsp;</p>
+<h3>So &#8230; Is TDD with UI Development Possible?</h3>
+<p dir="ltr">Yes.</p>
+<p dir="ltr">Remember, <em><strong>TDD is a software development process</strong></em> that can be applied anywhere in software.</p>
+<p dir="ltr">As always, please leave comments below. Thank you for reading. <img src="https://s.w.org/images/core/emoji/2.4/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/tdd-your-ui-layer/feed/</wfw:commentRss>
+		<slash:comments>17</slash:comments>
+		</item>
+		<item>
+		<title>Automating Screenshots: Simplifying Internationalization on Android</title>
+		<link>http://www.donnfelker.com/simplifying-internationalization-on-android/</link>
+		<comments>http://www.donnfelker.com/simplifying-internationalization-on-android/#comments</comments>
+		<pubDate>Thu, 11 Feb 2016 17:45:47 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+		<category><![CDATA[Mobile]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1911</guid>
+		<description><![CDATA[I’ve worked on some fairly large internationalized apps (50MM+ installs on each app) and on each app I&#8217;ve always had a problem with internationalization. It presents its own set of challenges. If you have not internationalized an app before you&#8217;ll quickly realize that your app design may not fit various locales &#8211; especially when text widgets [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>I’ve worked on some fairly large internationalized apps (50MM+ installs on each app) and on each app I&#8217;ve always had a problem with internationalization. It presents its own set of challenges. If you have not internationalized an app before you&#8217;ll quickly realize that your app design may not fit various locales &#8211; especially when text widgets are horizontally adjacent to each other. The text will eventually overlap or just look wonky and this can create odd UI bugs. You&#8217;ll find this out during testing, or as in my experience, when someone reports an odd text widget is overlapping another part of the UI. Finding these issues usually resulted in having your QA team go through each screen in the app to visually inspect the app for each locale. An optimal solution would be to visualize all of the different screens in the different locales so that it would be easy to inspect. Unfortunately that, solution did not exist &#8230;</p>
+<p>While there is no silver bullet for this situation, there is a new tool that can help with this process (which also has ancillary uses as well).</p>
+<p>I recently had the honor to work with the Fabric team &#8211; the same trusted team who brought us the Crashlytics tool that we all rely on. They were looking for some feedback on a new open source tool called <strong>screengrab</strong>. I got to try it out, and after some setup, I had an “Aha!” moment that made me want the tool immediately. It&#8217;s a tool that any pragmatic Android developer should evaluate as a possible candidate for their Android development toolbox &#8211; especially if your app is internationalized.</p>
+<p>Let me explain why &#8230;</p>
+<h3>What is screengrab and why should I care?</h3>
+<p>Put simply, it is a command line tool that helps you take screenshots of your application at desired execution points in your functional android tests (Espresso) … in any locale.</p>
+<p><img class="alignnone size-full wp-image-1912" src="http://www.donnfelker.com/wp-content/uploads/2016/02/running-screengrab.gif" alt="running-screengrab" width="800" height="457" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>A screenshot tool? Really? Any Locale? Why Should I care about that?</h4>
+<p>Therein lies the magic …</p>
+<p>One thing you notice during the localization effort is that during design and development strings that fit in one language (English for me) do not necessarily translate well to other languages. Meaning that a five-letter word in English may translate to a twenty letter word in another language.</p>
+<p>This is problematic when you are dealing with horizontal space. Longer text entries will overflow onto other widgets and you’ll have a problem.</p>
+<p>As stated above, you often don’t realize it until it&#8217;s too late because manually testing your application on various locales is difficult and extremely time intensive.</p>
+<h4>How Does screengrab Help?</h4>
+<p>The screengrab tool will help automate the process of visually inspecting the various locale output of your app. You can configure screengrab to load up different locales, run all the UI tests and take screenshots during the execution of the test on various devices and configurations at the same time &#8230; and then &#8230;.</p>
+<p><em>Screengrab will output all of the screenshot files for each locale for you. You can then use those files to quickly visually inspect if there are in fact visual problems with your application and locales. </em></p>
+<p>Simply scroll through the files and check to see if anything is broken.</p>
+<p>This can result in huge time savings when you make a feature change, add a new screen, etc.</p>
+<h4>How Do I Install It and Use it?</h4>
+<p>As usual, the Fabric team is making this as easy as possible. It&#8217;s one file to setup after <a href="https://github.com/fastlane/screengrab" target="_blank">the installation</a> that anyone on your team can run once it&#8217;s checked into github (setup once, setup everyone forever).</p>
+<p>Once installed you can start taking screenshots in your tests with the following Screengrab.screenshot(“screenshot_name”);</p>
+<p><pre data-enlighter-language="java" class="EnlighterJSRAW">@Test
+public void testTakeScreenshot() {
+    Screengrab.screenshot(&quot;before_button_click&quot;);
+
+    onView(withId(R.id.fab)).perform(click());
+
+    Screengrab.screenshot(&quot;after_button_click&quot;);
+}</pre></p>
+<p>The above code is a jUnit 4 test that allows you to take a screenshot before an action with a the tag “before_button_click”. This tag will show up on the screenshot so you can trace the execution of your test and screenshots.</p>
+<p>Then we click on a button, then take another screenshot.</p>
+<p>Almost done …</p>
+<h4>Configuring Various Locales</h4>
+<p>Now, lets assume you have mulitpe locales and you want to test those various locales and see the screenshot results. To do that you’ll need to provide some configuration values in the screengrabfile.</p>
+<p>The screengrabfile was generated when you installed screengrab. You’ll want to add the following information to the screengrab file:</p>
+<p><pre data-enlighter-language="ruby" class="EnlighterJSRAW"># locales to test
+locales [&#039;en-US&#039;, &#039;it-IT&#039;]
+
+# clear all previously generated screenshots in your local output directory before creating new ones
+clear_previous_screenshots true</pre></p>
+<p>This configures screengrab to run the US Ensligh locale and the Italian locale.</p>
+<h4>Now Lets Run It</h4>
+<p>You’ll need to make sure you’ve built your application so that you have an application APK and the test APK. Build that with the following command:</p>
+<p><code data-enlighter-language="shell" class="EnlighterJSRAW">$&amp;amp;gt; ./gradlew assembleDebug assembleAndroidTest</code></p>
+<p>Now that the application and test app are built you’re ready to kick off screengrab. Execute the following command:</p>
+<p><code data-enlighter-language="shell" class="EnlighterJSRAW">$&amp;amp;gt; screengrab</code></p>
+<p>This will fire off your tests in each locale and you’ll see your device(s) reacting and your console going wild, as this gif showcases:</p>
+<div id="attachment_1913" style="max-width: 310px" class="wp-caption alignnone"><img class="wp-image-1913 size-medium" src="http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-300x240.png" alt="screengrab-output" width="300" height="240" srcset="http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-300x240.png 300w, http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-1024x819.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /><p class="wp-caption-text">(Click for larger)</p></div>
+<p>When screengrab is done your screenshots will be stored in the <i>fastlane/metadata/android/images</i> directory of where you ran the <strong>screengrab</strong> command.</p>
+<h4>View The Results</h4>
+<p>Viola! Open the file to see how everything went. Here’s an example:</p>
+<div id="attachment_1913" style="max-width: 310px" class="wp-caption alignnone"><a href="http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output.png"><img class="wp-image-1913 size-medium" src="http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-300x240.png" alt="screengrab-output" width="300" height="240" srcset="http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-300x240.png 300w, http://www.donnfelker.com/wp-content/uploads/2016/02/screengrab-output-1024x819.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a><p class="wp-caption-text">(Click image for larger resolution)</p></div>
+<p>&nbsp;</p>
+<h3>What else can I use this for?</h3>
+<p>The screengrab tool integrates with the <a href="https://github.com/fastlane/" target="_blank">Ffastlane toolsuite</a> right out of the box.</p>
+<p>It&#8217;s fairly new for Android, so if you haven&#8217;t heard about it I totally get it. Here&#8217;s a quick synopsis &#8211; fastlane lets you, as a developer or release manager, automate your deployment pipeline. From integrating with <a href="http://fragmentedpodcast.com/episodes/12/" target="_blank">continuous integration</a> taking screenshots, to placing them into device frames (currently iOS only though, hopefully Android soon! Hint Hint Fabric team!),  to upload the files to Google Play automatically. Fastlane helps you automate the deployment process of your Android apps. <a href="https://fastlane.tools/" target="_blank">Check out fastlane</a> for more detailed info.</p>
+<p>The screengrab tool has a few additional use cases:</p>
+<ul>
+<li>Design/Product Manager Review
+<ul>
+<li>Keep your product and design teams up to date with all of the screens in your application on a per build basis.</li>
+</ul>
+</li>
+<li>Automate Screenshots for release</li>
+<li>Automate Screenshot automation for internal dog fooding and review processing with other tools.</li>
+<li>… and of course, to validate what might have gone wrong during a test.</li>
+</ul>
+<h3>Does this replace my other screen capture tooling?</h3>
+<p>No,  screengrab complements the existing toolchain that is out there. If you need/want to use your other solutions, feel free to keep using it. Screengrab is just another tool in your toolbox.</p>
+<h3>Pragmatic Development Tooling</h3>
+<p>I’m very pragmatic in my day to day development. When I do internationalize my next app (which I&#8217;m actually doing in the next month or two) I will be reaching for screengrab as the tool to help sanity check my work.</p>
+<p>Why?</p>
+<p>It’s simple. It’s easy. It helps me solve a problem and it gets out of my way. I don’t need to write the tool myself. It just works.</p>
+<p>As with anything new, it has a purpose and it now occupies a space in my toolbox. Maybe it will help you save some time too.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/simplifying-internationalization-on-android/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>The Rule of Thirds</title>
+		<link>http://www.donnfelker.com/the-rule-of-thirds/</link>
+		<comments>http://www.donnfelker.com/the-rule-of-thirds/#comments</comments>
+		<pubDate>Fri, 05 Feb 2016 18:23:44 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Health]]></category>
+		<category><![CDATA[Marketing]]></category>
+		<category><![CDATA[Misc]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1906</guid>
+		<description><![CDATA[Photo by Aaron Escobar via Creative Commons I learned one simple thing years ago that helped me more than I think anything else I’ve learned in awhile. What is it? You can’t make everyone happy. &#160; I’ve tried. It just doesn’t work. When you do try to make everyone happy you eventually end up feeling [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="alignnone size-full wp-image-1908" src="http://www.donnfelker.com/wp-content/uploads/2016/02/ducks.jpg" alt="Photo by Aaron Escobar via Creative Commons" width="640" height="427" srcset="http://www.donnfelker.com/wp-content/uploads/2016/02/ducks.jpg 640w, http://www.donnfelker.com/wp-content/uploads/2016/02/ducks-300x200.jpg 300w" sizes="(max-width: 640px) 100vw, 640px" /><small>Photo by <a href="https://www.flickr.com/photos/aaronescobar/">Aaron Escobar</a> via <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a></small></p>
+<p>I learned one simple thing years ago that helped me more than I think anything else I’ve learned in awhile.</p>
+<p>What is it?</p>
+<blockquote><p>You can’t make everyone happy.</p></blockquote>
+<p>&nbsp;</p>
+<p>I’ve tried. It just doesn’t work.</p>
+<p>When you do try to make everyone happy you eventually end up feeling <strong>defeated and burned out</strong>. At the end of the day you’ve wasted part of your life on trying to please people who do not want to be pleased.</p>
+<p>I eventually learned to accept what I call the rule of thirds. I’m not the first one to come up with this, but it is very useful so I thought I’d share it here.</p>
+<h3>The Rule of Thirds</h3>
+<p>The rule of thirds is a mental system which you can apply to your day to day life to help alleviate the mental load of worrying about making everyone happy.</p>
+<p><strong>The rule of thirds is as follows …<br />
+</strong>When you create something in life (a business, products, a presentation, public speaking, an idea, something at work, etc &#8211; it doesn&#8217;t matter .. its anything) people are going to react in one of three ways:</p>
+<ul>
+<li>1/3 of people are going to be positive about it</li>
+<li>1/3 of people are going to be indifferent about it</li>
+<li>1/3 of people are going to be negative about it</li>
+</ul>
+<p>As soon as you realize that this is the way the world works, the easier things become.</p>
+<p>Give a presentation on XYZ Topic at your local MeetUp? Most may like it, some may hate it, and some are indifferent.</p>
+<p>You can’t make everyone happy … and that’s ok.</p>
+<p>Thats why this world is great. We all have different opinions, emotions and things we enjoy. Everyone is unique.</p>
+<p>So the next time someone trolls you online about something you’ve done, just realize what bucket they’re in and move on with your life. Don’t let it disrupt your day.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/the-rule-of-thirds/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Why Podcasts Have Become Popular</title>
+		<link>http://www.donnfelker.com/why-podcasts-have-become-popular/</link>
+		<comments>http://www.donnfelker.com/why-podcasts-have-become-popular/#comments</comments>
+		<pubDate>Mon, 04 Jan 2016 02:18:56 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Development]]></category>
+		<category><![CDATA[Marketing]]></category>
+		<category><![CDATA[Misc]]></category>
+		<category><![CDATA[Mobile]]></category>
+		<category><![CDATA[Android]]></category>
+		<category><![CDATA[Productivity]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1902</guid>
+		<description><![CDATA[The way we consume video content is changing. Netflix. Hulu. You Tube. HBO Now. Amazon Instant Video. DVR. The way we communicate is changing. Email (always is popular). SMS/Text. WhatsApp. Facebook Messenger. Voxer. Telegram. The way we physically get around is changing. Uber. Lyft. Sidecar. Curb. The way we listen to audio is changing. iTunes. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img src="http://www.donnfelker.com/wp-content/uploads/2016/01/Photo-on-5-7-15-at-6.17-PM-3-1024x683.jpg" alt="Photo on 5-7-15 at 6.17 PM #3" width="1024" height="683" class="alignnone size-large wp-image-1903" srcset="http://www.donnfelker.com/wp-content/uploads/2016/01/Photo-on-5-7-15-at-6.17-PM-3-1024x683.jpg 1024w, http://www.donnfelker.com/wp-content/uploads/2016/01/Photo-on-5-7-15-at-6.17-PM-3-300x200.jpg 300w, http://www.donnfelker.com/wp-content/uploads/2016/01/Photo-on-5-7-15-at-6.17-PM-3.jpg 1080w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>The way we consume video content is changing. </p>
+<p><strong>Netflix. Hulu. You Tube. HBO Now. Amazon Instant Video. DVR.<br /></strong></p>
+<p>The way we communicate is changing. </p>
+<p><strong>Email (always is popular). SMS/Text. WhatsApp. Facebook Messenger. Voxer. Telegram. </strong></p>
+<p>The way we physically get around is changing. </p>
+<p><strong>Uber. Lyft. Sidecar. Curb. </p>
+<p></strong></p>
+<p>The way we listen to audio is changing. </p>
+<p><strong>iTunes. Google Play Music. Spotify. Pandora. Rdio (RIP)</p>
+<p></strong></p>
+<p>The way we educate is changing.</p>
+<p><strong>Kahn Academy. Code.org. Code Academy. MIT/Standford/Etc Free Online Classes.</strong></p>
+<p>The way we research things changed about two decades ago. </p>
+<p><strong>The Internet. Wikipedia. Blogs. </strong></p>
+<h3>What do all of things have in common? </h3>
+<p><em><strong>They’re all on-demand. </strong><br /></em><br />We live in a world where we can now determine when and where we will reply to a text message or email. We get to watch what we want to watch when we want to watch it. We get to usher a cab/ride when we need to go somewhere at any point in the day. We get to listen to the music that we want to listen to when we want to listen to it. We get to learn what we want to learn when we want to learn it. </p>
+<p>Many industries are getting disrupted by the on-demand economy.</p>
+<h3>Radio has been changing for years</h3>
+<p>Radio is ineffective because it’s live. I can only listen to what is on, right now, pre-programmed by someone who has tastes that are marginally similar to mine. </p>
+<p>Don’t like a song? </p>
+<p>Too bad. Listen to it. </p>
+<p>Don’t like this ad? </p>
+<p>Too bad. Listen to it. </p>
+<h3>Podcasts Are On-Demand Radio</h3>
+<p>That’s all there is to it. They’re on-demand radio that give you the ability to fast forward, rewind, save for later, etc. </p>
+<p>Can’t listen to it now? </p>
+<p>No problem. Listen to it later when you have time. </p>
+<p>Can’t listen to the whole show? </p>
+<p>No problem. Listen to the rest when you have time. </p>
+<p>Miss something? </p>
+<p>No problem. Hit rewind and listen to it again. </p>
+<p>This is one of the reasons why Howard Stern remains a powerhouse on Sirius/XM. Though his show is not a podcast it is consistently replayed all day and through his off time during the weeekends/etc. If fans miss a show, they can tune in and catch it any time of the day. Without this, his show would be far less popular, IMO. Unfortunately not everyone can listen to it at any time they want but this consitent replay exposes his show as an on-demand show. Listeners listen during the day when they have time.</p>
+<p>This is exactly why podcasts are becoming popular. </p>
+<p><strong>Podcasts are On-Demand Radio. <br /></strong><br />Download it and listen to it when you have time. Today. Tomorrow. Next week. Whenever. </p>
+<p><em>That is why Podcasts are becoming popular. </em></p>
+<p><em>If you’re an Android Developer/Mobile Developer you might like my podcast &#8211; <a href="http://www.fragmentedpodcast.com" target="_blank" title="Fragmented Podcast">Fragmented</a>. Its a podcast about Android Development that I host with <a href="http://www.kaush.co" target="_blank" title="Kaushik Gopal's Site">Kaushik Gopal</a>.</em></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/why-podcasts-have-become-popular/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Staying Sane and Productive While Working Remotely</title>
+		<link>http://www.donnfelker.com/working-remotely-tips/</link>
+		<comments>http://www.donnfelker.com/working-remotely-tips/#comments</comments>
+		<pubDate>Wed, 30 Dec 2015 21:13:42 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Development]]></category>
+		<category><![CDATA[Health]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1897</guid>
+		<description><![CDATA[Here&#8217;s some tips I can give you after working remotely for nearly 10 years. Image by jnyemb via Creative Commons Read REMOTE by Jason Fried and DHH Read (I highly advise listening to it on Audible): REMOTE: http://37signals.com/remote Alot of what I say is regurgitated in the book above. When I listened to the book years ago [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Here&#8217;s some tips I can give you after working remotely for nearly 10 years.<br />
+<img class="alignnone wp-image-1898 size-full" src="http://www.donnfelker.com/wp-content/uploads/2015/12/4051398710_8985c07e0e_o.jpg" alt="4051398710_8985c07e0e_o" width="600" height="450" srcset="http://www.donnfelker.com/wp-content/uploads/2015/12/4051398710_8985c07e0e_o.jpg 600w, http://www.donnfelker.com/wp-content/uploads/2015/12/4051398710_8985c07e0e_o-300x225.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /><br />
+<small>Image by <a href="https://www.flickr.com/photos/jnyemb/4051398710/" target="_blank">jnyemb</a> via Creative Commons</small></p>
+<h3>Read REMOTE by Jason Fried and DHH</h3>
+<p>Read (I highly advise listening to it on <a href="http://amzn.to/1VqeiFv" target="_blank">Audible</a>): REMOTE: <a href="http://37signals.com/remote">http://37signals.com/remote</a></p>
+<p>Alot of what I say is regurgitated in the book above. When I listened to the book years ago I thought to myself “Whoa, OMG, these guys think the same way I do … I’m NOT ALONE!!!!&#8221; &#8211; so I&#8217;ve been recommending it for ages.</p>
+<h3>Stick to a Schedule</h3>
+<p>Schedule. Schedule. Schedule. Stick to a schedule when starting out. It will save you.</p>
+<p>I get up at the same time every day, just like if I had a on-site job. I take a shower, get dressed and wear a collared shirt (think Golf shirt) and pants (usually jeans). I do my hair, and &#8220;get ready for work&#8221;. This is PURELY MENTAL. It prepares your mind and gets you into the mindset of work. Futhermore, being presentable goes a long way in a video call!</p>
+<h3>Preparation</h3>
+<p>I then get the <a href="http://www.donnfelker.com/overcoming-coffee-yerba-mate/" target="_blank">tea/coffee</a> ready, grab some snacks, some water in a water bottle and head off to my &#8220;office&#8221;. This again, is mental. I grab drinks and snacks so that I do not have to leave the office for awhile.</p>
+<blockquote><p>Distractions are abound in your house, you need to limit your exposure to them.</p></blockquote>
+<p>&nbsp;</p>
+<p>By preparing these small things you are getting yourself into the mindset for work. Let&#8217;s be100% honest here, there is no way in hell you can be effective with an interesting movie blaring in the background and working in 2 hour chunks through the day. You need to be in the mental mindset and have a schedule.</p>
+<p>Now, work your 6, 8, 10 hours or whatever you deem a work day. Get up and use the restroom, sparingly. When you eat lunch, spend 30 mins to 1 hour. Prepare your lunch before work if at all possible. Again, this is to limit distractions.</p>
+<h3>Make Time For Exercise</h3>
+<p>During lunch, fit in a workout in the garage if you can (or go to the gym/fitness group/etc &#8211; see below). Health is important. You don&#8217;t commute, so pick up some freaking weights or run or row, etc.</p>
+<p>Don&#8217;t have equipment?</p>
+<p>Go for a run. Do Calisthenics, etc.</p>
+<p>If you need help here, I can help you &#8211; I have tons of fitness programs I do on the road, visiting family, in my garage, all with no equipment. I&#8217;m no Hulk, but I&#8217;d say I&#8217;m &#8220;in shape&#8221; somewhat, so it must be working.</p>
+<h3>Eat Healthy</h3>
+<p>This is key! Eat healthy! Tip: Eat ONE salad per day. I don&#8217;t care when. Only requirement: Do not soak it in dressing. I recommend Olive Oil and vinaigrette or some variation. Not ranch or thousand island or any of those heavy variants. Eating one salad a day will do insane things for your health and mindset. Doing this alone will make positive changes in your diet and health.</p>
+<h3>Understand and Recognize Cabin Fever</h3>
+<p><a href="https://signalvnoise.com/posts/3658" target="_blank">Cabin fever</a> is real.</p>
+<p>If you live in a city, get out for lunch at least once a week. Go to a taco shop, meet a friend, have a lunch date with your wife/girl[boy]friend/husband/etc.</p>
+<p><strong>Get out of the house.</strong></p>
+<p>Plan to work out of the house 1-2 days a week.</p>
+<h3>Time Block Your Tasks</h3>
+<p>List a couple of tasks that you want to complete that take about 2-4 hours to complete, go to a coffee shop or coworking space and get it done. It will do an insane amount for you mentally and creatively. Do that a couple times a week. I find that sometimes doing one task at one coffee shop and then going to another place (library, etc) and doing the other one will also help break the monotony.</p>
+<h3>Outside of Work (AKA: Social Life)</h3>
+<p>Outside of work &#8211; do something that requires you to get out of the house. Join a fitness group &#8211; yoga, pilates, CrossFit, Brazilian Jiu-Jitsu, etc. You&#8217;ll get that social connection that way. I highly recommend it to be fitness or martial arts related.</p>
+<p>Fitness and martial arts communities are very tight knit and you’ll find a vast array of individuals you can connect with that have differnet backgrounds. Through these groups I’ve become friends with Lawyers, Doctors, Dentists, stay at home mothers, Insurance Reps, Students, you name it &#8211; they’re all there. Fitness and martial arts crosses all boundaries. It will be worth your while. Trust me on this one.</p>
+<h3>Create Some Mental Space</h3>
+<p>Try to meditate. Not into meditation? Try the free 10 day guided meditation from headspace.com (<a href="https://www.headspace.com/headspace-meditation-app" target="_blank">download the app</a> and try it out).</p>
+<p><strong>If you haven&#8217;t noticed yet, this is <em>all mainly mental</em>.</strong></p>
+<h3>Communication when Remote</h3>
+<p>As for your typical day to day work routine …<br />
+<strong><br />
+You are going to have to communicate about 3x-4x as hard as you did before.</strong></p>
+<p>That&#8217;s the way it is.</p>
+<p>Being remote means you have to be way more proactive.</p>
+<p>Don&#8217;t hear from your boss/teammate/etc and you&#8217;re stuck?</p>
+<p>Pick up the phone. Text. Call. Blow up the slack channel. <em>Anything<strong>.</strong></em> i.e. &#8211; <strong>Clear your own road.</strong></p>
+<p>When you&#8217;re remote you’re not visually there and<strong> sometimes you have to be loud</strong> before others respond. Voice your opinions.</p>
+<p>The goal is to communicate very well.</p>
+<h3>TLDR;</h3>
+<p>Its all mental.</p>
+<p>You need to create a schedule, stick to it, take care of your body, create the proper mental mindset and cultivate it (day in and day out). You need to create “out of band” social connections so you don’t go crazy. Do that with a fitness/martial arts group. Break work into chunks and get out of the house a couple times a week. Lastly, communicate the hell out of everything. If you’re not sure if you communicated enough, do it more. Annoy people if you have to, you’re remote and sometimes people forget about you if they can’t see you.</p>
+<p>Follow those simple steps and you&#8217;ll thrive in a remote atmosphere and you&#8217;ll end up enjoying life 10x more than you ever did before.</p>
+<p>Finally, if you ever have a question about remote working &#8211; <a href="http://www.donnfelker.com/contact/" target="_blank">email me</a> &#8211; I&#8217;ll help. I&#8217;ve been through probably almost anything you&#8217;ve been through working remote.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/working-remotely-tips/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		</item>
+		<item>
+		<title>Genymotion Will Not Start Virtual Device</title>
+		<link>http://www.donnfelker.com/genymotion-will-not-start-virtual-device/</link>
+		<comments>http://www.donnfelker.com/genymotion-will-not-start-virtual-device/#comments</comments>
+		<pubDate>Fri, 18 Dec 2015 21:12:49 +0000</pubDate>
+		<dc:creator><![CDATA[Donn Felker]]></dc:creator>
+				<category><![CDATA[Development]]></category>
+		<category><![CDATA[Misc]]></category>
+		<category><![CDATA[Android]]></category>
+		<category><![CDATA[development]]></category>
+
+		<guid isPermaLink="false">http://www.donnfelker.com/?p=1893</guid>
+		<description><![CDATA[My Genymotion device will not start. Hmmph. Thankfully, I was able to fix the issue. Here’s how I did it &#8211; hopefully it works for you too: The Issue When I would attempt to start the virtual device I’d get the following message (with screenshot below): Unable to start the virtual device. VirtualBox cannot start [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>My Genymotion device will not start. </p>
+<p>Hmmph.</p>
+<p> Thankfully, I was able to fix the issue. Here’s how I did it &#8211; hopefully it works for you too: </p>
+<h2>The Issue</h2>
+<p>When I would attempt to start the virtual device I’d get the following message (with screenshot below):</p>
+<blockquote><p>Unable to start the virtual device. VirtualBox cannot start the virtual device. To find out the cause of the problem, start the virtual device from VirtualBox …</p></blockquote>
+<p><a href="http://www.donnfelker.com/wp-content/uploads/2015/12/1450471994_full.png" target="_blank"><img class="aligncenter" src="http://www.donnfelker.com/wp-content/uploads/2015/12/1450471994_thumb.png" alt="" align="middle" /></a><br />
+I then started the device in VirtualBox and received the following error:</p>
+<blockquote><p>VERR_SUPLIB_OWNER_NOT_ROOT</p></blockquote>
+<p>with the text saying “Cannot start device” or something like that. The key was the error message constant:</p>
+<blockquote><p>VERR_SUPLIB_OWNER_NOT_ROOT</p></blockquote>
+<p>I sent my logs and screenshots of Genymotion and VirtualBox to Genymotion and I was told to install new graphics drivers (smh) and upgrade VirtualBox. This error has nothing to do with graphics drivers. Anyway .. I did some digging.</p>
+<h2>The Fix</h2>
+<p>I noticed that Genymotion was installed in the /Applications folder. Ok, cool. I took a look at the permissions via the CLI with:</p>
+<pre class="brush: bash; title: ; notranslate">&gt;ls -al</pre>
+<p>I noticed something weird … the /Applications folder was owned by someone else, not by wheel (the system admin group in OSX), myself or root. It was owned by some other user that I could not find (which is another issue altogether).</p>
+<p>The error message states that the owner is not root. You can typically fix this with the diskutil command:</p>
+<pre class="brush: bash; title: ; notranslate"> &gt; diskutil verifyPermissions /</pre>
+<p>This will verify all the permissions on your system (sans the homedir IIRC), telling you what is out of whack. To fix the permission issues you can run the following command:</p>
+<pre class="brush: bash; title: ; notranslate"> &gt; diskutil repairPermissions /</pre>
+<p>After running these commands I was able to start my Genymotion device as the user has been changed back to ‘root’.</p>
+<h3>Still Stuck?</h3>
+<p>If that did not work you can try changing the owner manually like this, which changes the owner:</p>
+<pre class="brush: bash; title: ; notranslate"> &gt; sudo chown root Applications</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://www.donnfelker.com/genymotion-will-not-start-virtual-device/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

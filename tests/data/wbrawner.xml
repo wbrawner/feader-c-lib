@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>William Brawner</title>
+    <description>I'm a tech enthusiast trying to learn new things every day.  I live and breathe Android, Linux, and cyber security. 
+</description>
+    <link>https://wbrawner.com//</link>
+    <atom:link href="https://wbrawner.com//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 18 Feb 2018 19:13:22 -0600</pubDate>
+    <lastBuildDate>Sun, 18 Feb 2018 19:13:22 -0600</lastBuildDate>
+    <generator>Jekyll v3.7.2</generator>
+    
+      <item>
+        <title>Testing Your Android Apps for Chromebooks - When You Don't Have One</title>
+        <description>&lt;p&gt;While I don’t have a Chromebook, I recently bought a Samsung Dex, which for those of you who aren’t aware of what that is, it basically allows you to take your Samsung phone, dock it, connect a mouse, keyboard, and external monitor, and use the phone as if it were a desktop computer. Seeing as I still actively develop and use &lt;a href=&quot;https://wbrawner.com/2017/08/28/simple-markdown-v0-1-0/&quot;&gt;Simple Markdown&lt;/a&gt;, I wanted to take a look at how I could make it compatible with Dex so that I could give it a go. Much to my surprise, Android emulators have the multi-window functionality built-in. Samsung has provided us with a &lt;a href=&quot;http://developer.samsung.com/samsung-dex/testing&quot;&gt;neat little guide&lt;/a&gt; to take a standard emulator and convert it for desktop use, but I’ll give you the quick points below.&lt;/p&gt;
+
+&lt;p&gt;Create an emulator based on the Nexus 6P running Android Nougat.
+Ensure that you have &lt;code class=&quot;highlighter-rouge&quot;&gt;adb&lt;/code&gt; on your &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt;, and open up the terminal. Run the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adb shell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This will drop you into the terminal session for your emulator, where you’ll run the following commands:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;su
+setenforce 0
+settings put global enable_freeform_support 1
+cd /data/local/tmp
+mkdir permissions &amp;amp;&amp;amp; cd permissions
+cp -a /system/etc/permissions/* ./
+sed -e &quot;s/live_wallpaper/freeform_window_management/&quot; android.software.live_wallpaper.xml &amp;gt; freeform.xml
+mount --bind . /system/etc/permissions
+stop
+start
+reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once the emulator reboots, run your app. Tap the Recent Apps button and you should notice a new icon next to the close button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/uploads/2018/02/freeform_icon.png&quot; alt=&quot;Freeform Icon&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tap that, and your app should launch in freeform mode. Last but not least, you’ll need to adjust the view density to get the resolution closer to that of a Chromebook (or Dex). Rotate the emulator into landscape mode and run &lt;code class=&quot;highlighter-rouge&quot;&gt;adb shell&lt;/code&gt; to get into the device’s terminal again. From there, run the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wm density 160
+wm size 1080x1920
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, you should be looking at your app as if it were running on a Chromebook! Interestingly enough, I was able to replicate a bug that was plaguing some of my Chromebook users that occurred by resizing the window. Here’s a screenshot of Simple Markdown in action:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2018/02/Simple-Markdown-Freeform.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/uploads/2018/02/Simple-Markdown-Freeform.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 18 Feb 2018 00:00:00 -0600</pubDate>
+        <link>https://wbrawner.com//2018/02/18/testing-your-android-apps-for-chromebooks-when-you-dont-have-one/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2018/02/18/testing-your-android-apps-for-chromebooks-when-you-dont-have-one/</guid>
+        
+        <category>android</category>
+        
+        <category>simple markdown</category>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
+    
+      <item>
+        <title>Simple Markdown January Updates</title>
+        <description>&lt;p&gt;I barely managed to squeeze these updates into the end of January, despite a busy post-holiday season for me. Simple Markdown is still not polished enough for me to call it a 1.0 release yet, as there are still plenty of rough edges to smooth out, and a few new features I’d like to add. You can grab the current revision from the &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.wbrawner.simplemarkdown&quot;&gt;Play Store&lt;/a&gt; or the &lt;a href=&quot;https://github.com/wbrawner/SimpleMarkdown/releases/tag/v0.3.1&quot;&gt;GitHub releases page&lt;/a&gt;. In this update, version 0.3.1, you can expect the following:&lt;/p&gt;
+
+&lt;h3 id=&quot;tldr&quot;&gt;tl;dr&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A couple of new features&lt;/li&gt;
+  &lt;li&gt;Bug fixes&lt;/li&gt;
+  &lt;li&gt;Code cleanup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;new-features&quot;&gt;New features&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Settings: you are seeing the beginnings of some customization. I’ll try to keep things simple with it in the spirit of the app, but I also know that it’s nice to have a little control over your apps.&lt;/li&gt;
+  &lt;li&gt;Auto-save: files are now automatically saved whenever you leave the app. No need to tap the “Save” button any more! Note: this is enabled by default but can be disabled from the settings.&lt;/li&gt;
+  &lt;li&gt;New files: you can now quickly reset your working file to switch into another file. No need to close and re-open the app any more!&lt;/li&gt;
+  &lt;li&gt;Auto-capitalization: the editor will automatically capitalize new sentences so you can leave the Shift key in peace!&lt;/li&gt;
+  &lt;li&gt;Adaptive icon!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;bug-fixesreliability-improvements&quot;&gt;Bug fixes/reliability improvements:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Fixed horizontal scrolling for code blocks. This is disabled by default, since it conflicts with the swipe to view the preview or go back to editing feature. For now, you can quickly enable/disable swiping from the menu by tapping “Lock Swiping”, but I hope to make this automatic in the future so you don’t have to think about it anymore. I’ll be sure to write about it when I’ve got it :)&lt;/li&gt;
+  &lt;li&gt;Fixed title setting on opening new files.&lt;/li&gt;
+  &lt;li&gt;Cleaned up some unneeded/unused code.&lt;/li&gt;
+  &lt;li&gt;Added more tests to prevent regressions.&lt;/li&gt;
+  &lt;li&gt;Fixed  a bug with physical keyboards where holding down Backspace could cause a crash&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m going to continue working on Simple Markdown as I have time, and as always, don’t hesitate to reach out to me if you run into any problems or have any suggestions or requests for improving the app! You can get in touch through the &lt;a href=&quot;https://wbrawner.com/contact/&quot;&gt;contact page&lt;/a&gt; on my site or from the &lt;a href=&quot;https://github.com/wbrawner/SimpleMarkdown/issues&quot;&gt;GitHub issues page&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 28 Jan 2018 00:00:00 -0600</pubDate>
+        <link>https://wbrawner.com//2018/01/28/simple-markdown-january-updates/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2018/01/28/simple-markdown-january-updates/</guid>
+        
+        <category>android</category>
+        
+        <category>open source</category>
+        
+        <category>simple markdown</category>
+        
+        
+        <category>Updates</category>
+        
+      </item>
+    
+      <item>
+        <title>Webview Memory Leak</title>
+        <description>&lt;p&gt;A few months ago, I published an app called &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.wbrawner.simplemarkdown&quot;&gt;SimpleMarkdown&lt;/a&gt;, which, as you can probably guess from the title, is a markdown editor. I had a strange bug that I couldn’t quite figure out no matter how much I searched it and eventually I had to put it on the back burner as I got overwhelmed with work. Gotta pay the bills somehow. Anyways, what was happening was the app would randomly crash due to a memory leak that was happening in the WebView, which is what I use to render the preview of the markdown. I couldn’t quite pin what was causing it, but you can see the full stack trace in the &lt;a href=&quot;https://github.com/wbrawner/SimpleMarkdown/issues/7&quot;&gt;GitHub issue&lt;/a&gt;. The exception message was as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Activity com.wbrawner.simplemarkdown.view.activity.MainActivity has leaked IntentReceiver org.chromium.content.browser.accessibility.LollipopBrowserAccessibilityManager$1@9a08817 that was originally registered here. Are you missing a call to unregisterReceiver()?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Naturally, this confused me, as I wasn’t registering any IntentReceivers in the Fragment nor in the Activity. This was also a pretty big show stopper, as I myself had lost at least one or two blog posts due to not saving the file before I ran into the crash. I can only imagine how frustrated other users were. I finally had the time to look into this again and I decided that I’d give it another go before just pulling out the preview functionality altogether. I’d rather have a small feature set in a stable app than a feature-packed app that doesn’t do the job it sets out to do properly.&lt;/p&gt;
+
+&lt;p&gt;After a little searching, I came across this &lt;a href=&quot;https://github.com/vickychijwani/quill/issues/75#issuecomment-241678135&quot;&gt;GitHub issue&lt;/a&gt;, where user vickychijwani was experiencing the same issue in a similar app of his called Quill. He discovered that by removing the WebView from its parent View prior to calling &lt;code class=&quot;highlighter-rouge&quot;&gt;WebView#destroy()&lt;/code&gt;, he no longer experienced the crash. I tested this myself, and sure enough, I’m no longer experiencing the crash myself! In fact, I was able to get through writing this blog post from my tablet using SimpleMarkdown and haven’t run into any issues whatsoever. Kudos to you, vickychijwani!&lt;/p&gt;
+
+&lt;p&gt;Before:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onDestroyView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onDestroyView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unbinder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unbind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can see here that I was simply expecting for the view to be properly disposed of by simply destroying it. I am using a fragment here though, so this may not be an issue when using a WebView within an Activity. The fix is as follows:&lt;/p&gt;
+
+&lt;p&gt;After:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onDestroyView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;markdownPreivew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;markdownPreview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getParent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;removeChild&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;markdownPreview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;markdownPreview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unbinder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unbind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onDestroyView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The key takeaways from this are that you have to explicitly destroy a WebView (at least in a fragment), as Android doesn’t handle this for you, and prior to doing that, you have to remove it from its parent view.&lt;/p&gt;
+
+&lt;p&gt;Just to play it safe, I’ve added &lt;a href=&quot;https://try.crashlytics.com&quot;&gt;Crashlytics&lt;/a&gt; to the next release, so that I can see any and all crashes, and make sure I squash the bug completely. I’ll be adding a privacy policy for SimpleMarkdown accordingly. Crashlytics only reports the device, version of Android, and stack trace If this makes you uncomfortable with using SimpleMardown, please feel free to build the app from source (it’s not very difficult and you can reach out to me if you need any assistance.)&lt;/p&gt;
+
+&lt;p&gt;Anyways, if you haven’t already, &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.wbrawner.simplemarkdown&quot;&gt;check out SimpleMarkdown&lt;/a&gt; and let me know what you think!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 03 Dec 2017 00:00:00 -0600</pubDate>
+        <link>https://wbrawner.com//2017/12/03/webview-memory-leak/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2017/12/03/webview-memory-leak/</guid>
+        
+        <category>android</category>
+        
+        <category>open source</category>
+        
+        <category>simple markdown</category>
+        
+        
+        <category>Projects and Experiments</category>
+        
+      </item>
+    
+      <item>
+        <title>Simple Markdown v0.1.0</title>
+        <description>&lt;p&gt;In my post on &lt;a href=&quot;https://brawner.tech/2016/09/16/progressive-web-apps/&quot;&gt;Progressive Web Apps&lt;/a&gt;, I opened by saying that I had always wanted to get into Android development but hadn’t “taken the time to learn Java and get to it”. So, I decided enough is enough and I want to pursue my goals. I recently read through Donn Felker’s 5-day newsletter on how to become a World-class developer, and one of the things he recommends is to write an app, even if it’s already been done before, to practice and also to have something to put into your portfolio. (Side note: even if you don’t want to be an Android dev or even a dev, I’m sure you can get something out of Donn Felker’s blog and newsletter. You should definitely &lt;a href=&quot;http://www.donnfelker.com/&quot;&gt;check him out&lt;/a&gt;). So, that’s exactly what I did. Donn also recommends getting out into the community, whether that be through blogging, Meetups, conferences, whatever. It’s not so easy for me to get to Meetups or conferences down here in Mexico, so that leaves me to blog for now.&lt;/p&gt;
+
+&lt;p&gt;As part of an initiative to get myself to blog more often, I decided to write a markdown app. The other markdown apps I tried seemed OK, but they all had a thing or two I just didn’t like. Either crashing, having confusing or unappealing interfaces, lacking features, or even sending my personal data back home, I felt the need to come up with my own solution. It’s currently in a beta state but I finally feel comfortable sharing it (after rewriting it about 4 times over). I still have plenty to learn and I’m sure there are places in the code that could be simplified or improved, so if you have any suggestions then please share!&lt;/p&gt;
+
+&lt;p&gt;So, Simple Markdown is an app that, simply put, allows you to write Markdown. There’s no fluff, no extras, and I’m not collecting data on you - it’s just markdown. For those times when you want the app to get out of your way and just let you do your thing, Simple Markdown is there for you. Personally, I prefer to write my blog posts in Markdown, as I find the rich text editor doesn’t always work the way I want it to, especially when I’m dealing with code. Writing the raw HTML can be a little tedious too, particularly when I can’t count on my editor to auto-close the tags (I know, I’m a lazy dev :P).&lt;/p&gt;
+
+&lt;p&gt;The app is open source, licensed under the Apache 2.0 license, so you can &lt;a href=&quot;https://github.com/wbrawner/SimpleMarkdown&quot;&gt;check out the code&lt;/a&gt; and contribute to it if you’d like! I’d also appreciate any feedback on how I can make it or the code better, so if you have any suggestions, feel free to &lt;a href=&quot;https://github.com/wbrawner/SimpleMarkdown/issues&quot;&gt;open an issue&lt;/a&gt; or &lt;a href=&quot;https://brawner.tech/contact/&quot;&gt;contact me directly&lt;/a&gt;! Below you can find a few screenshots of the app in action, and be sure to check it out on the Play Store!&lt;/p&gt;
+
+&lt;p&gt;In addition to getting myself to blog a bit more, I also wanted to get some hands-on time with a few popular libraries like RxJava and Dagger, to name a couple. I listen to the &lt;a href=&quot;http://fragmentedpodcast.com/&quot;&gt;Fragmented podcast&lt;/a&gt; and recently signed up over at &lt;a href=&quot;https://caster.io/&quot;&gt;Caster.io&lt;/a&gt; so I’m always hearing about them but I hadn’t yet given them a chance. Another thing I wanted to put into practice was the &lt;abbr title=&quot;Model-View-Presenter&quot;&gt;MVP&lt;/abbr&gt; architecture, since &lt;abbr title=&quot;Model-View-Controller&quot;&gt;MVC&lt;/abbr&gt; wasn’t doing it for me and I really want to work on testing.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2017/08/Screenshot_1503939483.png&quot;&gt;&lt;img class=&quot;wp-image-467 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503939483.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; Opening the app for the first time takes you straight to editing - worry about the file name and where to save it later.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2017/08/Screenshot_1503940322.png&quot;&gt;&lt;img class=&quot;wp-image-470 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503940322.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; Typing in Markdown doesn’t do immediate previews (I find them really annoying)&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;wp-image-471 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503940325.png&quot; alt=&quot;&quot; /&gt; Instead, you can just swipe over to the PREVIEW tab or tap on it to see what your Markdown will look like rendered in HTML&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;wp-image-468 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503939505.png&quot; alt=&quot;&quot; /&gt; I’ve included a little help document for those who aren’t familiar with Markdown as well (written in Markdown)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2017/08/Screenshot_1503940343.png&quot;&gt;&lt;img class=&quot;wp-image-472 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503940343.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; Saving files is pretty straight-forward&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2017/08/Screenshot_1503940616.png&quot;&gt;&lt;img class=&quot;wp-image-473 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503940616.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; In landscape mode, you get a live preview of what you’re typing off to the side.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2017/08/Screenshot_1503940801.png&quot;&gt;&lt;img class=&quot;wp-image-478 size-medium&quot; src=&quot;/uploads/2017/08/Screenshot_1503940801.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; You can easily share the markdown to other apps as well&lt;/p&gt;
+
+&lt;p&gt;Anyways, please check out the app in the Play Store or the Galaxy Apps Store and give me some feedback :)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://galxy.us/wbsm&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://www.galxy.us/badgeimage&quot; alt=&quot;Available on Samsung Galaxy Apps&quot; style=&quot;max-width: 100%; height: auto; box-shadow: none;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.wbrawner.simplemarkdown&amp;amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&quot;&gt;&lt;img style=&quot;box-shadow: none; max-width: 250px;&quot; src=&quot;https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png&quot; alt=&quot;Get it on Google Play&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Legal notice because laws:&lt;/p&gt;
+
+&lt;p&gt;Google Play and the Google Play logo are trademarks of Google Inc.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Aug 2017 00:00:00 -0500</pubDate>
+        <link>https://wbrawner.com//2017/08/28/simple-markdown-v0-1-0/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2017/08/28/simple-markdown-v0-1-0/</guid>
+        
+        <category>android</category>
+        
+        <category>open source</category>
+        
+        <category>simple markdown</category>
+        
+        
+        <category>Projects and Experiments</category>
+        
+      </item>
+    
+      <item>
+        <title>Using Git on a Chromebook</title>
+        <description>&lt;p&gt;tl;dr sgit + arc welder = git on chromebook&lt;/p&gt;
+
+&lt;p&gt;Anyone who has used a Chromebook knows the downsides of doing so. As a standard user, there probably aren’t many, unless you’re an iPhone user or a Microsoft Office user (though even Office has online web app versions of its products). As a developer, however, the lack of tools that are easily available is rather disdaining. Now, you can enter dev mode and use crouton, or wipe your Chromebook and replace ChromeOS with Linux, but these have their drawbacks. Using dev mode at all removes the encryption from your device, and, while you can encrypt your chroot if you use crouton, you leave your ChromeOS side completely vulnerable. I am quite a fan of the ChromeOS look and feel so I don’t particularly want to do this nor remove it, which is what led me to find another way around this to still get work done. The solution I am presenting allows you to use git on your Chromebook &lt;em&gt;without&lt;/em&gt; needing to tamper with ChromeOS.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;To begin, you’ll need the &lt;a href=&quot;https://chrome.google.com/webstore/detail/arc-welder/emfinbmielocnlhgmfkkmkngdoccbadn&quot;&gt;ARC Welder&lt;/a&gt; app from the Chrome Web Store. This neat little Google tool allows you to take an Android APK and convert it to a useable Chromebook app. With Google bringing the Play Store to Chromebooks over the course of the next year, this method and that app will both be rather pointless, but for those of us who are too impatient to wait, this is a fine strategy. With that downloaded and added to Chrome, you can then head on over to GitHub and grab the APK for &lt;a href=&quot;https://github.com/sheimi/SGit/releases&quot;&gt;SGit&lt;/a&gt;. The reason I get my APKs from there for this process is because the Play Store doesn’t allow you to directly download the APKs for the apps you want, and I’m quite certain that extracting the APKs from your device goes against the Terms of Use.  SGit is released under the GPLv3 license, so it’s safe to use for our purposes, and it is a fine Android client for git, that supports HTTP. HTTPS, and SSH (as long as your key isn’t password-protected) for accessing your repos.&lt;/p&gt;
+
+&lt;h2 id=&quot;converting-the-app&quot;&gt;Converting the App&lt;/h2&gt;
+
+&lt;p&gt;Now that you have the resources, it’s time to convert the APK into a format that the Chromebook can use. Fire up the ARC Welder and add the APK for SGit. All of the default settings will work perfectly fine except for the last. Click on the field that says Additional Metadata and enter the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{&quot;enableExternalDirectory&quot;: true}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will allow the app to access your Chromebook’s files, because by default, it is in a sort of container, isolated from the rest of your system.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-09-29-at-8.32.11-PM.png&quot; alt=&quot;A screenshot of the ARC Welder app with the settings filled in to make the SGit app work on a Chromebook&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From there, go ahead and download the zip file for this. You might be prompted to select a folder here. If so, then select one that you would want to share with the app. I personally select my entire downloads folder. Once you’ve saved the zip file, go and unzip it somewhere that will be easy for you to find (just not in your Google Drive or any other cloud storage). Now it’s time to install the app.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Navigate over to &lt;a href=&quot;chrome://extensions/&quot;&gt;chrome://extensions/&lt;/a&gt;. Up in the top right corner, you’ll see a checkbox that says Developer Mode. If you don’t already have this checked, do so now.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-09-30-at-5.49.53-PM.png&quot; alt=&quot;The developer mode checkbox&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After you’ve checked that, you’ll want to click on the “Load unpacked extension” button, and open the folder where you unzipped the app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-09-30-at-5.51.53-PM.png&quot; alt=&quot;The &amp;quot;Load unpacked extensions&amp;quot; button&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You should now see SGit in both your apps and the extension list below. Fire it up and you’re ready to go&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-10-02-at-1.02.43-PM.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-10-02-at-10.11.06-AM.png&quot; alt=&quot;A screenshot of me demonstrating the ability of SGit to clone a git repo on a Chrome OS device&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-10-02-at-1.02.43-PM.png&quot; alt=&quot;A screenshot of the various git operations that SGit can perform&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;extras&quot;&gt;Extras&lt;/h2&gt;
+
+&lt;p&gt;Having your code available is nice, but being able to work with it is even better. For this, I am a huge fan of &lt;a href=&quot;https://chrome.google.com/webstore/detail/caret/fljalecfjciodhpcledpamjachpmelml?hl=en&quot;&gt;Caret&lt;/a&gt; (there is also a neat fork of it called &lt;a href=&quot;https://chrome.google.com/webstore/detail/caret-t/agiednhnlghobdgpgfdnbdaflnngmoij?hl=en&quot;&gt;Caret-T&lt;/a&gt;). I myself use it (sometimes even from my Linux box) and highly recommend it. Editing code isn’t everything though - you also need to be able to test it. While you won’t be able to run any PHP or Ruby with this tool, you can do front end development and even full AngularJS apps. It’s called &lt;a href=&quot;https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en&quot;&gt;Web Server for Chrome&lt;/a&gt;, and it gives you a basic, easy to configure server to run HTML, CSS, and JS. I also personally use this to do front end work.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Sep 2016 00:00:00 -0500</pubDate>
+        <link>https://wbrawner.com//2016/09/30/using-git-on-a-chromebook/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/09/30/using-git-on-a-chromebook/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Say Time for Chrome</title>
+        <description>&lt;h2 id=&quot;tldr---say-time-for-chrome-in-the-chrome-web-store&quot;&gt;tl;dr - &lt;a href=&quot;https://chrome.google.com/webstore/detail/say-time-for-chrome/nfjdpimjabiocgdnlmdonmcdimhbfjhg&quot;&gt;Say Time for Chrome in the Chrome Web Store&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;One of the features of macOS that I really appreciate is the ability to have the Mac announce the hour. I find it incredibly helpful to stay on schedule and keep track of time. Unfortunately, on Windows and Linux, this isn’t as simple to set up. On Windows, the only method I have found involves using Windows Task Scheduler to run a VBScript/PowerShell script/.bat file/.exe file, which can be a nuisance and in my experience doesn’t work very well and isn’t convenient to configure (I don’t really care to have the hour announced at 2am). On Linux, you can use the saytime package, though I’m not sure it’s available on all distros, so you could use the espeak package, combined with the date package, and come up with a cron job that runs on your preferred intervals, which isn’t so bad but still a bit of an inconvenience to set up. To make things simpler for those of us who aren’t on macOS, I wrote a Chrome extension to do just that!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/screenshot-e1474934985410.png&quot; alt=&quot;Say Time for Chrome configuration in the extensions menu for Chrome&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/say-time-for-chrome/nfjdpimjabiocgdnlmdonmcdimhbfjhg&quot;&gt;Say Time for Chrome&lt;/a&gt; allows you to quickly and easily configure your computer to announce the hour to you, every hour. At the moment, it’s only working in English, though if there is demand for it, I would be more than happy to implement other languages as well (provided they are supported by Chrome’s TTS API. If you try it out, please give me some feedback on how to improve it, and report any bugs you find! This is only version 0.1.0 so I hope to make it something very useful someday! Right now this extension is close-sourced, though I plan to open-source it as soon as I have time to clean up the code and add comments to ensure that it all makes sense.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 27 Sep 2016 00:00:00 -0500</pubDate>
+        <link>https://wbrawner.com//2016/09/27/say-time-for-chrome/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/09/27/say-time-for-chrome/</guid>
+        
+        <category>chrome</category>
+        
+        <category>chrome extension</category>
+        
+        <category>weekend projects</category>
+        
+        
+        <category>Projects and Experiments</category>
+        
+        <category>Quick Thoughts</category>
+        
+      </item>
+    
+      <item>
+        <title>Progressive Web Apps</title>
+        <description>&lt;p&gt;For the longest time, I’ve wanted to get into Android development. While I haven’t yet taken the time to learn Java and get to it, I have been looking into progressive web apps. They’re actually rather exciting. Essentially, they seek to make web apps feel like native apps, to improve the user experience and increase conversions. I’m not really selling anything but I do like to provide a positive user experience to anyone who is interested in what I have to say, so I’ve taken the time to set this up. I’ll go over a couple of steps I took to make my &lt;a href=&quot;https://interval-timer.wbrawner.com/&quot;&gt;interval timer app&lt;/a&gt; a progressive web app.&lt;/p&gt;
+
+&lt;p&gt;Before I get into that though, I’d like to show some examples of how it works. You can of course click on the link to see it in action, but here’s the summary:&lt;/p&gt;
+
+&lt;h2 id=&quot;the-design&quot;&gt;The Design&lt;/h2&gt;
+
+&lt;p&gt;I tried to make look and feel as much like a native app as possible. I’m a huge fan of the Material Design theme in case you hadn’t already noticed, so that was what I decided to go with in making this app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot_20160920-174316.png&quot; alt=&quot;The main app view&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now here I had already opened the app and even configured a timer. If I were a first-time visitor, however, I would be prompted to add the “app” to my home screen for easy access.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot_20160920-180259.png&quot; alt=&quot;A popup on the screen prompts the user to add the app to their home screen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Android, this integrates quite nicely. As you can see from the first screenshot, the Chrome address bar isn’t visible any longer, so it looks and feels like a native app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot_20160920-180309.png&quot; alt=&quot;A screenshot of the home screen of an Android device shows the saved app's icon&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-functionality&quot;&gt;The Functionality&lt;/h2&gt;
+
+&lt;p&gt;Another important distinction between web apps and native apps is that native apps can of course be run whether or not you have an internet connection. Some apps require an internet connection to actually serve you any content, but you can still open them up and use some limited functionality. The same is true of this interval timer app, which allows you to open and run it even if you are in airplane mode or have no internet connection.&lt;/p&gt;
+
+&lt;p&gt;Native apps can also send you push notifications if you permit it. This simple interval timer app has no need for push notifications, so I didn’t bother to implement them. My blog, however, can send you push notifications for each new post that I publish if you subscribe to it, so you can see those in action from here:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot_20160920-182021.png&quot; alt=&quot;A screenshot of an Android phone lock screen shows a notification of a new post from my blog&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wbrawner.com//img/Screenshot-2016-09-20-at-6.18.01-PM.png&quot; alt=&quot;A screenshot of a desktop notification from my blog tor the same new post&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-why&quot;&gt;The Why&lt;/h2&gt;
+
+&lt;p&gt;You might be asking yourself why this matters. The simple answer is user engagement. Take, for instance, an eCommerce shop that runs an online store but has no native mobile apps. By improving the design to be simpler and more user-friendly, you’re certain to increase your conversion rates because potential customers are much more likely to buy from your store if it’s easy to use. Using the offline capabilities of the app will allow you to store static assets like CSS and JS files, as well as images, to improve site loading times. Faster site loading times also increase conversion rates so the faster your site loads for the customer, the more likely they are to buy from you. Lastly, by implementing push notifications, you can alert your customers instantly to new products, sales, blog posts, you name it. Getting a push notification will make them more likely to visit your store, and more traffic will also inevitably lead to more conversions. The bottom line: progressive web apps increase conversions. But don’t take my word for it, read &lt;a href=&quot;https://developers.google.com/web/showcase/2016/pdfs/flipkart.pdf&quot;&gt;Google’s case study of Flipkart&lt;/a&gt;, an Indian company who increased their conversion rate by 70% by implementing progressive web app techniques.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-how&quot;&gt;The How&lt;/h2&gt;
+
+&lt;p&gt;At the core, this technology is powered by &lt;a href=&quot;https://developers.google.com/web/fundamentals/primers/service-worker/?hl=en&quot;&gt;Service Workers&lt;/a&gt;.  Service workers are registered to the users browser on the first time they visit the page, initializing the connection. This is how the cache is set up, which allows for offline viewing and increases the page loading speed. I personally read through &lt;a href=&quot;https://developers.google.com/web/fundamentals/getting-started/your-first-offline-web-app/?hl=en&quot;&gt;Google’s tutorial on them&lt;/a&gt; to get started with mine. You can go through the whole tutorial step-by-step to get a good idea of how they work, or do as I did and just jump around to get the pieces that you need. Everyone has their own learning styles so do what suits you best. Feel free to &lt;a href=&quot;https://github.com/wbrawner/interval-timer/blob/master/sw.js&quot;&gt;take a look at my example&lt;/a&gt; (and please provide tips on how to improve it if you see anything), as the whole project is open source. I just went for simplicity, caching the core assets on installation and then adding anything to the cache if it was missed initially.&lt;/p&gt;
+
+&lt;p&gt;For adding the app to the home screen, no code is required, unless you’d like to display a popup to your users inviting them to do add the app. This is because the actual action of adding the app to the home screen falls to the device’s browser. Matteo Spinelli has created a &lt;a href=&quot;https://github.com/cubiq/add-to-homescreen&quot;&gt;nice little library&lt;/a&gt; for creating this popup, which I made use of, and it’s under the MIT license so you are free to do with it as you please. In order to set the icons that will be used for each device, you have to make use of various meta tags in the header. I recommend using the &lt;a href=&quot;http://realfavicongenerator.net/&quot;&gt;Favicon Generator&lt;/a&gt;, as it really makes the entire process as simple as it can get, for Android, iOS, and Windows Phone icons. It even generates the code for you so it’s really a no-brainer.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrapping-it-up&quot;&gt;Wrapping It Up&lt;/h2&gt;
+
+&lt;p&gt;If you’re interested in learning more about progressive web apps, I’d take a look at &lt;a href=&quot;https://developers.google.com/web/progressive-web-apps/&quot;&gt;Google’s articles on them&lt;/a&gt;. They have a bit more in-depth resources as well as some pretty good tutorials and actual code on how to make your own progressive web app. For my blog, I’m running WordPress, there are a few extensions that I made use of to set up &lt;a href=&quot;https://wordpress.org/plugins/chrome-push-notifications/&quot;&gt;push notifications&lt;/a&gt;, &lt;a href=&quot;https://wordpress.org/plugins/offline-shell/&quot;&gt;offline caching of static assets&lt;/a&gt;, and the &lt;a href=&quot;https://wordpress.org/plugins/official-add-to-homescreen/&quot;&gt;add to home screen callout&lt;/a&gt; (also by Matteo Spinelli). If none of these solutions work for you, it’s never a bad time to hire a freelancer to get the job done for you :)&lt;/p&gt;
+
+&lt;p&gt;If you’re into the Material Design as much as I am, you can also take a look at &lt;a href=&quot;https://material.google.com/style/color.html#&quot;&gt;Google’s Material Design Color Palettes&lt;/a&gt; and this neat &lt;a href=&quot;https://www.materialpalette.com/&quot;&gt;Material Design Color Palette Generator&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Got any tips and tricks about progressive web apps? Please share in the comments section below or from the &lt;a href=&quot;https://brawner.tech/contact/&quot;&gt;Contact page&lt;/a&gt;!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 16 Sep 2016 23:46:34 -0500</pubDate>
+        <link>https://wbrawner.com//2016/09/16/progressive-web-apps/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/09/16/progressive-web-apps/</guid>
+        
+        
+        <category>Quick Thoughts</category>
+        
+        <category>Tutorials</category>
+        
+      </item>
+    
+      <item>
+        <title>Vim and Vundle</title>
+        <description>&lt;p&gt;For the longest time, I have neglected to put my vim configuration under some sort of version control. I suppose it’s not been a top priority for me to maintain the configuration that I’ve taken so much care to set up until now. Since I started using vim about a year ago, I’ve really only kept my configuration, along with the plugins that I like, stored on a backup drive and on my server. This is of course not the greatest set up. I admittedly haven’t been using vim as much lately because I’ve sort of viewed it as inferior to the likes of PHPStorm or even SublimeText. Curiosity got the best of me though, and I decided to do some research into whether or not vim could handle some of the functions that my GUI code editors can. To my surprise, vim is more than capable of handling all the tasks I currently use the other editors for, and even has a few goodies that I didn’t think of.&lt;/p&gt;
+
+&lt;p&gt;I do primarily PHP development, so that’s my primary concern when it comes to using a code editor. I stumbled upon &lt;a href=&quot;http://blog.joncairns.com/2012/05/using-vim-as-a-php-ide/&quot;&gt;this article by Jon Cairns&lt;/a&gt; where he outlines several good plugins for vim directed to PHP devs. I didn’t decide to use all of the ones he listed, though I did grab more than half because they are fantastic. In addition to those, I have a few others that I like. Here’s the list (in no particular order):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/VundleVim/Vundle.vim&quot;&gt;VundleVim/Vundle.vim&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/scrooloose/nerdtree&quot;&gt;scrooloose/nerdtree&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/Xuyuanp/nerdtree-git-plugin&quot;&gt;Xuyuanp/nerdtree-git-plugin&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/jiangmiao/auto-pairs&quot;&gt;jiangmiao/auto-pairs&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/alvan/vim-closetag&quot;&gt;alvan/vim-closetag&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/shawncplus/phpcomplete.vim&quot;&gt;shawncplus/phpcomplete.vim&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/joonty/vim-phpqa&quot;&gt;joonty/vim-phpqa&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/ervandew/supertab&quot;&gt;ervandew/supertab&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/StanAngeloff/php.vim&quot;&gt;StanAngeloff/php.vim&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;kien/ctrlp.vim&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To manage all of these, I grabbed Vundle, which is what Jon Cairns mentions in his article. I must say, I am quite impressed. If you’re interested in getting started with Vundle, take a look at &lt;a href=&quot;https://github.com/VundleVim/Vundle.vim#quick-start&quot;&gt;their Readme on their GitHub page&lt;/a&gt;. The instructions there are really self-explanatory and easy to follow. I got myself set up with Vundle, and added my favorite plugins to my .vimrc. Once I had that taken care of, I cleaned up my .vim folder to remove all of the plugin files, added my .vimrc file to my .vim folder, initialized it as a git repo, and pushed up to GitLab. Now, whenever I need to move my vim configuration to a new machine, I’m only 3 commands away from getting my favorite setup going:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone --recursive https://gitlab.com/billybrawner/vim.git ~/.vim
+ln -s .vim/.vimrc
+vim +PluginInstall +qall
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This pulls down my configuration, moves it to where vim can find it, and installs all of my favorite plugins. I also have all the other benefits of having it under version control like being able to revert changes that I don’t end up liking and having safe backups elsewhere. Given my newly-discovered set of tools and easy-to-manage/setup configuration, I’ve decided to give vim another shot as my main editor.&lt;/p&gt;
+
+&lt;p&gt;If you’d like to check out my vim setup, you can see it at &lt;a href=&quot;https://gitlab.com/billybrawner/vim.git&quot;&gt;https://gitlab.com/billybrawner/vim.git&lt;/a&gt;. If you have any other neat vim tips and tricks, or know of any awesome plugins (particularly related to PHP/WordPress/Magento development), please share them in the comments!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 16 Sep 2016 23:03:58 -0500</pubDate>
+        <link>https://wbrawner.com//2016/09/16/vim-and-vundle/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/09/16/vim-and-vundle/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Recent Downtime</title>
+        <description>&lt;p&gt;A week ago I had a bit of downtime, because I decided to switch hosts. Previously, I was using DigitalOcean, with a droplet running Ubuntu 14.04. I paid $10 a month for a 30GB SSD, 1 CPU core, and 1GB of RAM. This used to be alright for me, because I was just running this website, which doesn’t really get a lot of traffic. Recently however, this hadn’t quite sufficed. I’ve been really researching the best way to move some of my work to the cloud. Ideally, I’d like to have a separate server for this, but in the meantime, I’ve been testing out different methods to do so here, and I’m using up too many resources to be able to run both this website and my tests. Because of this, I went ahead and switched over to Linode. With Linode, I get 24GB SSD storage, a 1 core CPU, and 2 GB of RAM at the same price. For me, having a bit more RAM was more important than the 6GB of storage that I lost. I’m nowhere near the limit anyways, so for now, this will do.&lt;/p&gt;
+
+&lt;p&gt;The VPS host wasn’t the only thing I changed, however. As I stated earlier, the DigitalOcean droplet I was on ran Ubuntu 14.04. I decided that I wanted to learn more enterprise-oriented Linux distributions, so I went for CentOS. Not only that, but I wanted more stability and a longer support cycle. So, I’ve noticed a few things that have broken in the migration, but if you happen to come across something that I’ve missed, please use the contact form to send me a message and let me know. I would greatly appreciate it.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 28 Jun 2016 00:00:00 -0500</pubDate>
+        <link>https://wbrawner.com//2016/06/28/recent-downtime/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/06/28/recent-downtime/</guid>
+        
+        
+        <category>Opinions</category>
+        
+        <category>Updates</category>
+        
+      </item>
+    
+      <item>
+        <title>Geeko in the Terminal!</title>
+        <description>&lt;p&gt;In this mini-tutorial, I’m going to show you how to customize the prompt to have a colorful Geeko greet you each time you open up the terminal. For someone who spends the majority of their day in the terminal like myself, it’s fun to customize it. I personally use zsh as my shell, but I’ve also tested this in bash with no troubles whatsoever. To begin, I found an image of Geeko on Google and Googled an image to ASCII art converter. There are plenty of them out there, so find one you like. Copy the output and save that to a file. I’ve got this here:&lt;/p&gt;
+&lt;pre&gt; 
+                             __╓╦╦╗▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╦╦╦___     µ╦╦____               
+                        _╓╗▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╦▓▓▓▓▓▓▓▓▓▓╗╦╦_        
+                   ,╓╗▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╩╜╜╜╩▓╦_    
+                _╗▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╜,╗▓▓▓▄ ╚▓╦   
+             _▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ╫▓▓__╬▌ ▓▓▄  
+          ,▄▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╬▓▓▓▓_ⁿ╬▓▓▓╩`╓▓▓▓⌐ 
+         ▄╬▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓_ ⁿ╜╬▓▓╦___╓▓▓▓▓▓▀ 
+       ╓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▄_ ⁿⁿ╜╜╩╩╜╜ⁿ`_⌐ 
+      ▓▓▓▓▓▓▓▓▓╩╜╜╜╙╜╜╩╬▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╦╦╦╗▓▓▓╩  
+     ▓▓▓▓▓▓▓╜     ___    ⁿ╚▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╩╩╜ⁿ    
+    ╓▓▓▓▓▓╜   ╓▓▓▓▓▓▓▓▓╦_   ╙▓▓▓▓▓▓▓▓▓▓╩╩╜╜╜╜╜╩╬▓▓▓▓▓▓▓▓▓▓▓╜ⁿ    `ⁿⁿⁿⁿⁿⁿⁿ`           
+    ╠▓▓▓▓▌  ,▓▓▓▓╩╜╜╩╬▓▓▓▓╕   ╫▓▓▓▓▓▓╩`          ⁿ╚▓▓▓▓▓▓▓▓                          
+    ╠▓▓▓▓µ  ╠▓▓▓`     ⁿ╬▓▓▓╕   ╫▓▓▓▓▓               ╙▓▓▓▓▓▓                          
+    ╚▓▓▓▓▓  ╙▓▓▓▓▓▓▓╦  ⁿ▓▓▓▓   ²╬▓▓▓▓                 ╚▓▓▓▓▓                         
+     ╫▓▓▓▓▓   ╙╩▓▓▓▓╜  ╓▓▓▓▓      ⁿ╙╩                   ⁿ╙╩▓▓                        
+      ╙▓▓▓▓▓▓__      _▄▓▓▓▓`                                 º                       
+       `╚▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╩ⁿ                                                          
+          ⁿ╙╩▓▓▓▓▓▓▓▓▓╩╜ⁿ&lt;/pre&gt;
+&lt;p&gt;and I’ve saved that to a file called suse-lizard that I store in my .config directory. To print it out on each new terminal window/tab, just add&lt;/p&gt;
+&lt;pre&gt;echo ~/.config/suse-lizard&lt;/pre&gt;
+&lt;p&gt;to your .bashrc (or .zshrc for those of us who use zsh). And you’re done!&lt;/p&gt;
+&lt;h3&gt;Extra:&lt;/h3&gt;
+&lt;p&gt;To get it to print out in color, you can use ASCII escape codes. I won’t bother including all of them in here, because you’re only a quick Google search from finding them, but you can add this little snippet to your rc file to get your Geeko to be printed out in green:&lt;/p&gt;
+&lt;pre&gt;while IFS='' read -r LINE || [[ -n &quot;$LINE&quot; ]]; do 
+    echo -e &quot;\033[32m$LINE\e[0m&quot;; 
+done &amp;lt; &quot;/home/billy/.config/suse-lizard&quot;&lt;/pre&gt;
+&lt;p&gt;Which gives you an end result  of this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/uploads/2016/06/Screenshot-2016-06-09-200815.png&quot;&gt;&lt;img src=&quot;/uploads/2016/06/Screenshot-2016-06-09-200815-300x132.png&quot; alt=&quot;geeko in the terminal&quot; width=&quot;300&quot; height=&quot;132&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;My terminal output on each new tab/window&lt;/p&gt;
+
+&lt;p&gt;Not too shabby! You could even combine this with some sort of fortune/cowsay combo to get Geeko to give you bits of wisdom on each load!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Jun 2016 00:00:00 -0500</pubDate>
+        <link>https://wbrawner.com//2016/06/10/geeko-in-the-terminal/</link>
+        <guid isPermaLink="true">https://wbrawner.com//2016/06/10/geeko-in-the-terminal/</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
+    
+  </channel>
+</rss>

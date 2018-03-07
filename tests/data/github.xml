@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/wbrawner/SimpleMarkdown/commits/master</id>
+  <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commits/master"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/wbrawner/SimpleMarkdown/commits/master.atom"/>
+  <title>Recent Commits to SimpleMarkdown:master</title>
+  <updated>2018-03-05T04:39:29Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/8f81553997d1a98dd86e6b4d2abb5c2c581903b3</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/8f81553997d1a98dd86e6b4d2abb5c2c581903b3"/>
+    <title>
+        Merge pull request #24 from wbrawner/sdcard-crash-fix
+    </title>
+    <updated>2018-03-05T04:39:29Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #24 from wbrawner/sdcard-crash-fix
+
+Add possible fix for NPE in ExplorerActivity&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/018879116d806361059905b905c47733e263faa7</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/018879116d806361059905b905c47733e263faa7"/>
+    <title>
+        Add possible fix for NPE in ExplorerActivity
+    </title>
+    <updated>2018-03-05T04:30:15Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add possible fix for NPE in ExplorerActivity&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/775bfc0f92917d8f17d7624ec35beed4fadd91cb</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/775bfc0f92917d8f17d7624ec35beed4fadd91cb"/>
+    <title>
+        Merge pull request #23 from wbrawner/splash-screen-fix
+    </title>
+    <updated>2018-03-05T03:51:42Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #23 from wbrawner/splash-screen-fix
+
+Fix splash screen appearance&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/e3ec6734edfe1300cdb23471c3e7e1384b6b379e</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/e3ec6734edfe1300cdb23471c3e7e1384b6b379e"/>
+    <title>
+        Fix splash screen appearance
+    </title>
+    <updated>2018-03-05T03:37:10Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Fix splash screen appearance&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/8cb20248c6d6d6b5464f773baed213df7a55429a</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/8cb20248c6d6d6b5464f773baed213df7a55429a"/>
+    <title>
+        Increment version number
+    </title>
+    <updated>2018-03-05T02:57:15Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Increment version number&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/f9910f835d34956d768b25b1ede8d146075b629d</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/f9910f835d34956d768b25b1ede8d146075b629d"/>
+    <title>
+        Merge pull request #22 from wbrawner/default-root
+    </title>
+    <updated>2018-03-05T02:51:21Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #22 from wbrawner/default-root
+
+Add option to set default root directory&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/2d357ec3c039f2e238ba4e5382f7314bc46abdaa</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/2d357ec3c039f2e238ba4e5382f7314bc46abdaa"/>
+    <title>
+        Fix broken tests
+    </title>
+    <updated>2018-03-05T02:37:45Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Fix broken tests&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/c0f036f885d00a2e1bc6d1d31accca05691e4d55</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/c0f036f885d00a2e1bc6d1d31accca05691e4d55"/>
+    <title>
+        Add option to set default root directory
+    </title>
+    <updated>2018-03-05T01:48:49Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add option to set default root directory&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/5f74c18a45f0f1981bcd6e8efbbfe4c6f42b020d</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/5f74c18a45f0f1981bcd6e8efbbfe4c6f42b020d"/>
+    <title>
+        Merge pull request #21 from wbrawner/dex
+    </title>
+    <updated>2018-03-05T00:34:05Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #21 from wbrawner/dex
+
+Added Dex support&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/3ae00db49eb98fb74665187a4e63dd64860d2677</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/3ae00db49eb98fb74665187a4e63dd64860d2677"/>
+    <title>
+        Added Dex support
+    </title>
+    <updated>2018-03-04T19:52:33Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Added Dex support&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/97c0c98fdf30dd81ec93fddae83331169d86ca91</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/97c0c98fdf30dd81ec93fddae83331169d86ca91"/>
+    <title>
+        Merge pull request #20 from wbrawner/samsung
+    </title>
+    <updated>2018-02-18T00:44:38Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #20 from wbrawner/samsung
+
+Add Samsung build flavor&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/e98d4cb48a691367c13fc38504811167cfe2c2dd</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/e98d4cb48a691367c13fc38504811167cfe2c2dd"/>
+    <title>
+        Add Samsung build flavor
+    </title>
+    <updated>2018-02-18T00:28:29Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add Samsung build flavor&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/b9cbaae0865282506dfbf5724e5e4f45cbf0dacd</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/b9cbaae0865282506dfbf5724e5e4f45cbf0dacd"/>
+    <title>
+        Merge pull request #19 from wbrawner/default-view
+    </title>
+    <updated>2018-02-03T00:47:50Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #19 from wbrawner/default-view
+
+Add default launch view setting&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/650ccdcb8a44e0f6b5b28051278da16d8e370c79</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/650ccdcb8a44e0f6b5b28051278da16d8e370c79"/>
+    <title>
+        Add default launch view setting
+    </title>
+    <updated>2018-02-03T00:36:49Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add default launch view setting&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/6ecded0b2558b13e7c36583dbd0fbf3d95fb788a</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/6ecded0b2558b13e7c36583dbd0fbf3d95fb788a"/>
+    <title>
+        Update README.md
+    </title>
+    <updated>2018-02-02T14:35:56Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Update README.md&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/39553373093e617fafda74e34d8a44d21ca3c7e9</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/39553373093e617fafda74e34d8a44d21ca3c7e9"/>
+    <title>
+        Fix bug on markdown processing
+    </title>
+    <updated>2018-01-28T21:42:21Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Fix bug on markdown processing&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/46c084a454c8ec6efa8d43fa7d0070165fd4a87f</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/46c084a454c8ec6efa8d43fa7d0070165fd4a87f"/>
+    <title>
+        Add apk files to gitignore
+    </title>
+    <updated>2018-01-28T02:35:07Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add apk files to gitignore&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/1bb9526c8e9839ba7c0a139f80e824643e7fc774</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/1bb9526c8e9839ba7c0a139f80e824643e7fc774"/>
+    <title>
+        Increment version number for release and fix test
+    </title>
+    <updated>2018-01-28T02:34:38Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Increment version number for release and fix test&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/67360f32dce1085b184777da19daa81ab954949d</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/67360f32dce1085b184777da19daa81ab954949d"/>
+    <title>
+        Fix apache license text in Libraries text
+    </title>
+    <updated>2018-01-28T02:28:06Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Fix apache license text in Libraries text&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/ef0ba289ac69cfbbaaf5c248fa4e4e5b403fdc07</id>
+    <link type="text/html" rel="alternate" href="https://github.com/wbrawner/SimpleMarkdown/commit/ef0ba289ac69cfbbaaf5c248fa4e4e5b403fdc07"/>
+    <title>
+        Fix file opening
+    </title>
+    <updated>2018-01-28T02:20:26Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11827417?s=30&amp;v=4"/>
+    <author>
+      <name>wbrawner</name>
+      <uri>https://github.com/wbrawner</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Fix file opening&lt;/pre&gt;
+    </content>
+  </entry>
+</feed>
