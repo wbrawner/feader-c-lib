@@ -2,13 +2,24 @@
 
 This repo houses the library behind Feader. The idea behind the project is to separate the logic for retrieving, parsing, and storing RSS feed elements from the display, so that interface used to access the data can be independent from the logic, therefore allowing much easier cross-platform development. 
 
-## External dependencies
+## Configuring the Environment
 
-The external dependencies are included in the `src/` directory, to allow for compilation anywhere. They were acquired from the following sources:
+### Ubuntu
 
-- SQLite3: http://www.sqlite.org/download.html
-- Yxml: https://g.blicky.net/yxml.git
+Install the following packages
 
+```
+cmake libcurl3-openssl-dev libxml2-dev libsqlite3-dev
+```
+
+OR run the configure script:
+
+```
+./configure
+```
+
+### Windows
+ WIP
 
 ## Building
 
@@ -19,6 +30,7 @@ mkdir build
 cd build
 cmake ..
 make
+./Feader https://wbrawner.com/feed.xml
 ```
 
 ## Todo:

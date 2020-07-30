@@ -1,3 +1,4 @@
+#include "libxml/tree.h"
 #include "sqlite/sqlite3.h"
 #define DB_FILE "feader.db"
 
@@ -7,6 +8,7 @@ typedef struct {
     long totalSize;
     char *url;
     char *errBuf;
+    xmlDocPtr xdp;
 } xml;
 
 typedef struct {

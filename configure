@@ -1,0 +1,65 @@
+#!/bin/bash
+
+source /etc/os-release
+
+if [ "$ID" != "ubuntu" ]; then
+    echo "Unsupported build system. If you experience any build issues,
+    please try on Ubuntu, or modify the script to support your system
+    and submit a PR :)";
+fi
+
+CWD=$(pwd)
+DEPS=$CWD/deps
+TMP=$CWD/tmp
+
+check_dependency() {
+    if [ ! "$(which $1)" ]; then
+        echo "please install $1 before continuing"
+        exit 1
+    fi
+}
+
+setup_dir() {
+    test -d $1 && rm -rf $1
+    mkdir $1
+}
+
+manual_setup() {
+    cd $TMP
+
+    # Set up libxml2
+    git clone https://github.com/gnome/libxml2 $TMP/libxml2
+    cd $TMP/libxml2
+    git reset --hard 707ad080e61014ab4a6d60dc12875e233c1f673c
+    virtualenv venv
+    source venv/bin/activate
+    /bin/bash $TMP/libxml2/autogen.sh --prefix=$DEPS
+    make install
+    deactivate
+    
+    # Set up cURL
+    git clone https://github.com/curl/curl $TMP/curl
+    cd $TMP/curl
+    git reset --hard ccd1ec7aa8a0c0da9106c9a39e0d7de531d04dfb
+    /bin/bash $TMP/curl/buildconf
+    /bin/bash $TMP/curl/configure --prefix=$DEPS
+    make install
+    cd $TMP
+    rm -rf $TMP
+}
+
+setup_dir $DEPS
+setup_dir $TMP
+
+check_dependency cmake
+check_dependency git
+check_dependency virtualenv
+
+manual_setup
+
+cd $CWD
+setup_dir build
+cd build
+cmake ..
+
+echo "To build, run \"cd build && make\""
