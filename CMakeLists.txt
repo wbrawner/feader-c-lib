@@ -1,21 +1,12 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.7)
 project(
     feader 
     )
-add_library(
-    feader STATIC
+add_executable(
+    feader-cli 
     src/feader.c
     )
 add_library(
-    sqlite3 STATIC
-    src/sqlite/sqlite3.c
+    feader SHARED
+    src/feader.c
     )
-add_library(
-    yxml STATIC
-    src/yxml/yxml.c
-    )
-target_link_libraries(
-    feader
-    sqlite3
-    yxml
-)

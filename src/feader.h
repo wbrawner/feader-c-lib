@@ -35,6 +35,10 @@ typedef struct {
     char *filter_reject;
 } feed;
 
+size_t my_write_callback(char *ptr, size_t size, size_t nmemb, xml *x);
+
+size_t get_xml(xml *x);
+
 void parse_xml_items(xml *x);
 
 void get_xml_ptr(xml* x, char* url);
@@ -50,3 +54,4 @@ void fead_xml(char* url);
 void setup_database(sqlite3* handle);
 
 void close_database(sqlite3* handle);
+
