@@ -96,6 +96,7 @@ void print_xml_elements(xml* x) {
 void cleanup_xml(xml* x) { 
     free(x->data);
     free(x->errBuf);
+    xmlFreeDoc(x->xdp);
     free(x);
 }
 
