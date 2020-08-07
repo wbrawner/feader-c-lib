@@ -8,7 +8,6 @@ typedef struct {
     int size;
     long totalSize;
     char *url;
-    char *errBuf;
     xmlDocPtr xdp;
 } xml;
 
@@ -19,11 +18,11 @@ typedef struct {
     long feed_id;
     char *author;
     bool is_favorite;
-    char *featured_image text;
-    char *content text;
-    char *excerpt text;
+    char *featured_image;
+    char *content;
+    char *excerpt;
     bool is_read;
-    char *published_date date;
+    char *published_date;
 } article;
 
 typedef struct {
@@ -33,10 +32,14 @@ typedef struct {
     char *feed_url;
     char *icon;
     bool is_favorite;
-    char *last_polled date;
+    char *last_polled;
     char *filter_accept;
     char *filter_reject;
 } feed;
+
+typedef struct {
+
+} feed_with_articles;
 
 size_t my_write_callback(char *ptr, size_t size, size_t nmemb, xml *x);
 
