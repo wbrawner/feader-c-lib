@@ -1,13 +1,14 @@
-#include "curl/curl.h"
-#include "curl/easy.h"
 #include "feader.h"
-#include "libxml/parser.h"
-#include "libxml/tree.h"
-#include "libxml/xmlreader.h"
-#include "libxml/xmlstring.h"
+
+#include <curl/curl.h>
+#include <curl/easy.h>
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/tree.h>
+#include <libxml2/libxml/xmlreader.h>
+#include <libxml2/libxml/xmlstring.h>
+#include <sqlite3.h>
 #include <stdlib.h>
 #include <string.h>
-#include "sqlite/sqlite3.h"
 
 int main(int argc, char **argv) {
     if (argc < 2) {
